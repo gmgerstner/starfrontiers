@@ -243,3 +243,11 @@
 .starfrontiers .form-group select {
   flex: 1;
 }
+
+.starfrontiers button.small {
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+/* Removed dimming for locked state to avoid visually muting the sheet when stats are locked. */

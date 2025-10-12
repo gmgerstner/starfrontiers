@@ -8,22 +8,24 @@
         <input type="text" name="system.type" value="{{system.type}}" placeholder="Creature Type"/>
       </div>
       <div class="resource">
-        <button class="roll-initial-stats">Roll Initial Stats</button>
+        <button class="roll-initial-stats" title="Roll d100 for each ability to generate initial base scores">Roll Initial Stats</button>
+      </div>
+      <div class="resource">
+        <label>Type: </label>
+  <input type="text" name="system.type" value="{{system.type}}" placeholder="Creature Type" />
       </div>
       <div class="resource">
         <label>CR: </label>
-        <input type="number" name="system.cr" value="{{system.cr}}" data-dtype="Number"/>
+  <input type="number" name="system.cr" value="{{system.cr}}" data-dtype="Number" />
+      </div>
+      <div class="resource">
+        <button class="roll-initial-stats small" title="Roll d100 for each ability to generate initial base scores" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}>Roll Initial Stats</button>
+  <button class="toggle-stats-lock small" title="Lock stats to prevent editing or accidental rolls" {{#unless owner}}disabled{{/unless}}>{{#if flags.starfrontiers.statsLocked}}Unlock Stats{{else}}Lock Stats{{/if}}</button>
       </div>
       <div class="resource">
         <label>Current STA: </label>
-        <input class="sta-current" type="number" step="1" min="1" max="100" name="system.stamina.current" value="{{system.stamina.current}}" data-dtype="Number"/>
+  <input class="sta-current" type="number" step="1" min="1" max="100" name="system.stamina.current" value="{{system.stamina.current}}" data-dtype="Number" title="Current Stamina (track damage). Can be lower than Max STA." />
       </div>
-    </div>
-  </header>
-
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="abilities">Abilities</a>
-    <a class="item" data-tab="items">Items</a>
     <a class="item" data-tab="bio">Description</a>
   </nav>
 
@@ -34,14 +36,14 @@
           <label>STR</label>
           <input type="number" step="1" min="1" max="100" name="system.str.value" value="{{system.str.value}}" data-dtype="Number"/>
           <label>STA</label>
-          <input class="sta-max" type="number" step="1" min="1" max="100" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number"/>
+          <input class="sta-max" type="number" step="1" min="1" max="100" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number" title="Max Stamina (paired with STR)."/>
         </div>
 
         <div class="ability-row">
           <label>DEX</label>
           <input type="number" step="1" min="1" max="100" name="system.dex.value" value="{{system.dex.value}}" data-dtype="Number"/>
           <label>RS</label>
-          <input class="rs-input" type="number" step="1" min="1" max="100" name="system.rs" value="{{system.rs}}" data-dtype="Number"/>
+          <input class="rs-input" type="number" step="1" min="1" max="100" name="system.rs" value="{{system.rs}}" data-dtype="Number" title="RS (derived from DEX by default). Editing RS will change IM."/>
         </div>
 
         <div class="ability-row">

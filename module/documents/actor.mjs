@@ -29,10 +29,16 @@ export class StarFrontiersActor extends Actor {
       }
     }
 
-    // Calculate stamina based on STR/DEX average
+    // Calculate stamina.max based on STR/DEX average but do NOT force-down a stored stamina.value.
+    // We want to allow rolling or setting a custom Max STA (system.stamina.value) to remain.
     if (systemData.str && systemData.dex) {
       systemData.stamina.max = Math.floor((systemData.str.value + systemData.dex.value) / 2);
-      if (systemData.stamina.value > systemData.stamina.max) {
+      // Ensure current stamina does not exceed computed max
+      if (typeof systemData.stamina.current !== 'undefined' && systemData.stamina.current > systemData.stamina.max) {
+        systemData.stamina.current = systemData.stamina.max;
+      }
+      // If stamina.value (Max STA) is missing/undefined, default it to the computed max
+      if (typeof systemData.stamina.value === 'undefined' || systemData.stamina.value === null) {
         systemData.stamina.value = systemData.stamina.max;
       }
     }

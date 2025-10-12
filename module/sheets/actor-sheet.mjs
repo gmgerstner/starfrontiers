@@ -227,6 +227,7 @@ export class StarFrontiersActorSheet extends ActorSheet {
     html.find('.ability-roll').click(this._onAbilityRoll.bind(this));
     html.find('.item-roll').click(this._onItemRoll.bind(this));
   html.find('.roll-initial-stats').click(this._onRollInitialStats.bind(this));
+  html.find('.toggle-stats-lock').click(this._onToggleStatsLock.bind(this));
 
     // Live-update IM display when RS changes
     const updateIM = (input) => {
@@ -244,6 +245,12 @@ export class StarFrontiersActorSheet extends ActorSheet {
 
     // Update as user types
     html.find('.rs-input').on('input', (ev) => updateIM(ev.currentTarget));
+
+    // Apply a locked class for styling when locked
+    if (this.actor && this.actor.getFlag) {
+      const locked = this.actor.getFlag('starfrontiers', 'statsLocked');
+      if (locked) html.addClass('locked'); else html.removeClass('locked');
+    }
   }
 
   /**
@@ -252,6 +259,10 @@ export class StarFrontiersActorSheet extends ActorSheet {
   async _onRollInitialStats(event) {
     event.preventDefault();
     if (!this.actor) return;
+    // Prevent rolling if stats are locked
+    if (this.actor.getFlag && this.actor.getFlag('starfrontiers', 'statsLocked')) {
+      return ui.notifications?.warn('Stats are locked. Unlock to roll.');
+    }
 
     // mapping table as array of {max: n, score, desc}
     const table = [
@@ -266,25 +277,41 @@ export class StarFrontiersActorSheet extends ActorSheet {
       { max: 100, score: 70, desc: 'Incredible' }
     ];
 
-    const abilities = ['str','dex','int','per','ldr','log'];
+    const pairs = [
+      { primary: 'str', secondary: 'stamina', label: 'STR/STA' },
+      { primary: 'dex', secondary: 'rs', label: 'DEX/RS' },
+      { primary: 'int', secondary: 'log', label: 'INT/LOG' },
+      { primary: 'per', secondary: 'ldr', label: 'PER/LDR' }
+    ];
     const updates = {};
     const rolls = [];
 
-    for (const ab of abilities) {
+    for (const p of pairs) {
       const r = new Roll('1d100');
       await r.evaluate({async: true});
       const value = r.total === 0 ? 100 : r.total; // treat 0 as 100
       const entry = table.find(t => value <= t.max);
       const score = entry ? entry.score : 45;
-      updates[`system.${ab}.value`] = score;
-      updates[`system.${ab}.modifier`] = 0;
-      rolls.push({ability: ab.toUpperCase(), roll: value, score, desc: entry ? entry.desc : ''});
-    }
 
-    // Set stamina max to STR score and current to same value
-    const strScore = updates['system.str.value'];
-    updates['system.stamina.value'] = strScore;
-    updates['system.stamina.current'] = strScore;
+      // Primary ability
+      updates[`system.${p.primary}.value`] = score;
+      updates[`system.${p.primary}.modifier`] = 0;
+
+      // Secondary target: stamina (special), rs (single field), or an ability
+      if (p.secondary === 'stamina') {
+        updates['system.stamina.value'] = score;
+        updates['system.stamina.current'] = score;
+      }
+      else if (p.secondary === 'rs') {
+        updates['system.rs'] = score;
+      }
+      else {
+        updates[`system.${p.secondary}.value`] = score;
+        updates[`system.${p.secondary}.modifier`] = 0;
+      }
+
+      rolls.push({ability: p.label, roll: value, score, desc: entry ? entry.desc : ''});
+    }
 
     await this.actor.update(updates);
 
@@ -292,6 +319,21 @@ export class StarFrontiersActorSheet extends ActorSheet {
     const lines = rolls.map(r => `${r.ability}: d100=${r.roll} → ${r.score} (${r.desc})`).join('\n');
     const content = `<h3>Initial Stats for ${this.actor.name}</h3><pre>${lines}</pre>`;
     ChatMessage.create({content, speaker: ChatMessage.getSpeaker({actor: this.actor})});
+  }
+
+  async _onToggleStatsLock(event) {
+    event.preventDefault();
+    if (!this.actor) return;
+    // Only allow toggling if the current user is an owner of the actor or is a GM
+    const isOwner = this.actor.isOwner;
+    const isGM = game.user?.isGM;
+    if (!isOwner && !isGM) {
+      return ui.notifications?.warn('Only the actor owner or a GM may lock or unlock stats.');
+    }
+
+    const locked = !!this.actor.getFlag('starfrontiers', 'statsLocked');
+    await this.actor.setFlag('starfrontiers', 'statsLocked', !locked);
+    this.render(false);
   }
 
   async _onAbilityRoll(event) {
