@@ -8,10 +8,8 @@
         <input type="text" name="system.race" value="{{system.race}}" placeholder="Human"/>
       </div>
       <div class="resource">
-        <label>Stamina: </label>
-        <input type="text" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number"/>
-        <span> / </span>
-        <input type="text" name="system.stamina.max" value="{{system.stamina.max}}" data-dtype="Number"/>
+        <label>Current STA: </label>
+        <input class="sta-current" type="number" step="1" min="1" max="100" name="system.stamina.current" value="{{system.stamina.current}}" data-dtype="Number"/>
       </div>
     </div>
   </header>
@@ -24,17 +22,39 @@
 
   <section class="sheet-body">
     <div class="tab abilities" data-group="primary" data-tab="abilities">
-      <div class="abilities-list">
-        {{#each system as |ability key|}}
-          {{#if ability.value}}
-            <div class="ability">
-              <h4 class="ability-name">{{key}}</h4>
-              <input type="text" name="system.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-              <span class="ability-mod">Mod: {{numberFormat ability.modifier decimals=0 sign=true}}</span>
-              <button class="ability-roll" data-ability="{{key}}">Roll</button>
-            </div>
-          {{/if}}
-        {{/each}}
+      <div class="abilities-list paired">
+    <div class="ability-row">
+      <label>STR</label>
+      <input type="number" step="1" min="1" max="100" name="system.str.value" value="{{system.str.value}}" data-dtype="Number"/>
+      <label>STA</label>
+      <input class="sta-max" type="number" step="1" min="1" max="100" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number"/>
+    </div>
+
+        <div class="ability-row">
+          <label>DEX</label>
+            <input type="number" step="1" min="1" max="100" name="system.dex.value" value="{{system.dex.value}}" data-dtype="Number"/>
+          <label>RS</label>
+          <input class="rs-input" type="number" step="1" name="system.rs" value="{{system.rs}}" data-dtype="Number"/>
+        </div>
+
+        <div class="ability-row">
+          <label>INT</label>
+            <input type="number" step="1" min="1" max="100" name="system.int.value" value="{{system.int.value}}" data-dtype="Number"/>
+          <label>LOG</label>
+            <input type="number" step="1" min="1" max="100" name="system.log.value" value="{{system.log.value}}" data-dtype="Number"/>
+        </div>
+
+        <div class="ability-row">
+          <label>PER</label>
+            <input type="number" step="1" min="1" max="100" name="system.per.value" value="{{system.per.value}}" data-dtype="Number"/>
+          <label>LDR</label>
+            <input type="number" step="1" min="1" max="100" name="system.ldr.value" value="{{system.ldr.value}}" data-dtype="Number"/>
+        </div>
+
+        <div class="ability-row">
+          <label>IM</label>
+          <input class="im-display" type="number" step="1" value="{{system.im}}" data-dtype="Number" readonly aria-readonly="true"/>
+        </div>
       </div>
     </div>
 

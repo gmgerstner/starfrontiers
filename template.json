@@ -4,36 +4,18 @@
     "templates": {
       "base": {
         "stamina": {
-          "value": 50,
-          "max": 50
+          "value": 45,
+          "max": 45
         },
         "biography": ""
       },
       "abilities": {
-        "str": {
-          "value": 50,
-          "modifier": 0
-        },
-        "dex": {
-          "value": 50,
-          "modifier": 0
-        },
-        "int": {
-          "value": 50,
-          "modifier": 0
-        },
-        "per": {
-          "value": 50,
-          "modifier": 0
-        },
-        "ldr": {
-          "value": 50,
-          "modifier": 0
-        },
-        "log": {
-          "value": 50,
-          "modifier": 0
-        }
+        "str": { "value": 45, "modifier": 0 },
+        "dex": { "value": 45, "modifier": 0 },
+        "int": { "value": 45, "modifier": 0 },
+        "per": { "value": 45, "modifier": 0 },
+        "ldr": { "value": 45, "modifier": 0 },
+        "log": { "value": 45, "modifier": 0 }
       }
     },
     "character": {
