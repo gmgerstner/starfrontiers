@@ -1,0 +1,37 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Skill Name"/></h1>
+    </div>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="attributes">Attributes</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      <div class="form-group">
+        <label>Skill Level:</label>
+        <input type="number" name="system.level" value="{{system.level}}" data-dtype="Number"/>
+      </div>
+      <div class="form-group">
+        <label>Related Ability:</label>
+        <select name="system.ability">
+          <option value="str" {{#if (eq system.ability 'str')}}selected{{/if}}>STR</option>
+          <option value="dex" {{#if (eq system.ability 'dex')}}selected{{/if}}>DEX</option>
+          <option value="int" {{#if (eq system.ability 'int')}}selected{{/if}}>INT</option>
+          <option value="per" {{#if (eq system.ability 'per')}}selected{{/if}}>PER</option>
+          <option value="ldr" {{#if (eq system.ability 'ldr')}}selected{{/if}}>LDR</option>
+          <option value="log" {{#if (eq system.ability 'log')}}selected{{/if}}>LOG</option>
+        </select>
+      </div>
+    </div>
+  </section>
+</form>

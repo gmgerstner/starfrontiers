@@ -1,0 +1,38 @@
+{
+  "STARFRONTIERS": {
+    "SheetClassActor": "Star Frontiers Actor Sheet",
+    "SheetClassItem": "Star Frontiers Item Sheet",
+    
+    "AbilitySTR": "Strength",
+    "AbilityDEX": "Dexterity", 
+    "AbilityINT": "Intuition",
+    "AbilityPER": "Personality",
+    "AbilityLDR": "Leadership",
+    "AbilityLOG": "Logic",
+    
+    "ItemTypeWeapon": "Weapon",
+    "ItemTypeArmor": "Armor",
+    "ItemTypeEquipment": "Equipment",
+    "ItemTypeSkill": "Skill",
+    
+    "Race": "Race",
+    "Stamina": "Stamina",
+    "Biography": "Biography",
+    "Description": "Description",
+    "Attributes": "Attributes",
+    "Items": "Items",
+    "Skills": "Skills",
+    "Weapons": "Weapons",
+    "Equipment": "Equipment",
+    
+    "Damage": "Damage",
+    "Range": "Range",
+    "Ammo": "Ammo",
+    "WeaponType": "Weapon Type",
+    "Quantity": "Quantity",
+    "Weight": "Weight",
+    "Cost": "Cost",
+    "SkillLevel": "Skill Level",
+    "RelatedAbility": "Related Ability"
+  }
+}

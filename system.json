@@ -1,0 +1,37 @@
+{
+  "id": "starfrontiers",
+  "title": "Star Frontiers",
+  "description": "A game system for playing Star Frontiers in Foundry VTT",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "Star Frontiers Community"
+    }
+  ],
+  "esmodules": [
+    "module/starfrontiers.mjs"
+  ],
+  "styles": [
+    "styles/starfrontiers.css"
+  ],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 1.5,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "stamina",
+  "secondaryTokenAttribute": "stamina",
+  "url": "https://github.com/yourusername/starfrontiers-foundry",
+  "manifest": "https://github.com/yourusername/starfrontiers-foundry/releases/latest/download/system.json",
+  "download": "https://github.com/yourusername/starfrontiers-foundry/archive/refs/heads/main.zip",
+  "license": "LICENSE"
+}

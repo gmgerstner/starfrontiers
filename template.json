@@ -1,0 +1,84 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "base": {
+        "stamina": {
+          "value": 50,
+          "max": 50
+        },
+        "biography": ""
+      },
+      "abilities": {
+        "str": {
+          "value": 50,
+          "modifier": 0
+        },
+        "dex": {
+          "value": 50,
+          "modifier": 0
+        },
+        "int": {
+          "value": 50,
+          "modifier": 0
+        },
+        "per": {
+          "value": 50,
+          "modifier": 0
+        },
+        "ldr": {
+          "value": 50,
+          "modifier": 0
+        },
+        "log": {
+          "value": 50,
+          "modifier": 0
+        }
+      }
+    },
+    "character": {
+      "templates": ["base", "abilities"],
+      "race": "",
+      "experience": 0,
+      "credits": 0,
+      "skills": {}
+    },
+    "npc": {
+      "templates": ["base", "abilities"],
+      "type": "",
+      "cr": 0
+    }
+  },
+  "Item": {
+    "types": ["weapon", "armor", "equipment", "skill"],
+    "templates": {
+      "base": {
+        "description": "",
+        "quantity": 1,
+        "weight": 0,
+        "cost": 0
+      }
+    },
+    "weapon": {
+      "templates": ["base"],
+      "damage": "1d10",
+      "range": 50,
+      "ammo": 20,
+      "weaponType": "ranged"
+    },
+    "armor": {
+      "templates": ["base"],
+      "defense": 0,
+      "type": "light"
+    },
+    "equipment": {
+      "templates": ["base"]
+    },
+    "skill": {
+      "templates": [],
+      "level": 1,
+      "ability": "dex",
+      "description": ""
+    }
+  }
+}

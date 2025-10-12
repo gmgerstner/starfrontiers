@@ -1,0 +1,245 @@
+.starfrontiers {
+  font-family: "Roboto", sans-serif;
+}
+
+.starfrontiers .window-content {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.starfrontiers .sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #2a2a2a;
+  border-bottom: 2px solid #00a8ff;
+  padding: 10px;
+}
+
+.starfrontiers .sheet-header .profile-img {
+  flex: 0 0 100px;
+  height: 100px;
+  margin-right: 20px;
+  border: 2px solid #00a8ff;
+  border-radius: 5px;
+}
+
+.starfrontiers .sheet-header .header-fields {
+  flex: 1;
+}
+
+.starfrontiers .sheet-header .charname input {
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  color: #00a8ff;
+  margin-bottom: 10px;
+}
+
+.starfrontiers .resource {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.starfrontiers .resource label {
+  flex: 0 0 80px;
+  font-weight: bold;
+}
+
+.starfrontiers .resource input {
+  width: 60px;
+  text-align: center;
+  background: #3a3a3a;
+  border: 1px solid #555;
+  color: #e0e0e0;
+  margin: 0 5px;
+}
+
+.starfrontiers .sheet-tabs {
+  flex: 0 0 40px;
+  border-top: 2px solid #00a8ff;
+  border-bottom: 2px solid #00a8ff;
+  background: #2a2a2a;
+}
+
+.starfrontiers .sheet-tabs .item {
+  line-height: 40px;
+  font-weight: bold;
+  color: #888;
+  border-right: 1px solid #444;
+}
+
+.starfrontiers .sheet-tabs .item.active {
+  color: #00a8ff;
+  text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+}
+
+.starfrontiers .sheet-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.starfrontiers .tab {
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.starfrontiers .abilities-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 10px;
+}
+
+.starfrontiers .ability {
+  background: #2a2a2a;
+  border: 1px solid #00a8ff;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.starfrontiers .ability-name {
+  text-transform: uppercase;
+  color: #00a8ff;
+  margin: 0;
+  flex: 0 0 60px;
+}
+
+.starfrontiers .ability input {
+  width: 60px;
+  text-align: center;
+  background: #3a3a3a;
+  border: 1px solid #555;
+  color: #e0e0e0;
+}
+
+.starfrontiers .ability-mod {
+  color: #aaa;
+  font-size: 12px;
+  margin: 0 10px;
+}
+
+.starfrontiers .ability-roll {
+  background: #00a8ff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.starfrontiers .ability-roll:hover {
+  background: #0088cc;
+}
+
+.starfrontiers .items-section h3 {
+  color: #00a8ff;
+  border-bottom: 2px solid #00a8ff;
+  padding-bottom: 5px;
+  margin-top: 15px;
+}
+
+.starfrontiers .items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.starfrontiers .items-list .item {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 3px;
+  margin: 5px 0;
+  padding: 5px 10px;
+  align-items: center;
+}
+
+.starfrontiers .items-list .item:hover {
+  background: #333;
+  border-color: #00a8ff;
+}
+
+.starfrontiers .items-list .item img {
+  flex: 0 0 24px;
+  margin-right: 10px;
+  border: none;
+}
+
+.starfrontiers .items-list .item-name {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.starfrontiers .items-list .item-damage {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.starfrontiers .item-controls {
+  display: flex;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+
+.starfrontiers .item-control {
+  color: #00a8ff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.starfrontiers .item-control:hover {
+  color: #0088cc;
+}
+
+.starfrontiers .editor {
+  height: 100%;
+}
+
+.starfrontiers .editor .editor-content {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+.starfrontiers input[type="text"],
+.starfrontiers input[type="number"],
+.starfrontiers select {
+  background: #3a3a3a;
+  border: 1px solid #555;
+  color: #e0e0e0;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.starfrontiers input[type="text"]:focus,
+.starfrontiers input[type="number"]:focus,
+.starfrontiers select:focus {
+  outline: none;
+  border-color: #00a8ff;
+  box-shadow: 0 0 5px rgba(0, 168, 255, 0.5);
+}
+
+.starfrontiers .form-group {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.starfrontiers .form-group label {
+  flex: 0 0 150px;
+  font-weight: bold;
+  color: #00a8ff;
+}
+
+.starfrontiers .form-group input,
+.starfrontiers .form-group select {
+  flex: 1;
+}
