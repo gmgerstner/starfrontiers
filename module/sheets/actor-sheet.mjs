@@ -226,6 +226,7 @@ export class StarFrontiersActorSheet extends ActorSheet {
 
     html.find('.ability-roll').click(this._onAbilityRoll.bind(this));
     html.find('.item-roll').click(this._onItemRoll.bind(this));
+  html.find('.roll-initial-stats').click(this._onRollInitialStats.bind(this));
 
     // Live-update IM display when RS changes
     const updateIM = (input) => {
@@ -243,6 +244,54 @@ export class StarFrontiersActorSheet extends ActorSheet {
 
     // Update as user types
     html.find('.rs-input').on('input', (ev) => updateIM(ev.currentTarget));
+  }
+
+  /**
+   * Roll initial stats for the actor using the provided table mapping d100 ranges to base scores.
+   */
+  async _onRollInitialStats(event) {
+    event.preventDefault();
+    if (!this.actor) return;
+
+    // mapping table as array of {max: n, score, desc}
+    const table = [
+      { max: 10, score: 30, desc: 'Feeble' },
+      { max: 20, score: 35, desc: 'Poor' },
+      { max: 35, score: 40, desc: 'Below Average' },
+      { max: 55, score: 45, desc: 'Average' },
+      { max: 70, score: 50, desc: 'Above Average' },
+      { max: 80, score: 55, desc: 'Good' },
+      { max: 90, score: 60, desc: 'Excellent' },
+      { max: 95, score: 65, desc: 'Remarkable' },
+      { max: 100, score: 70, desc: 'Incredible' }
+    ];
+
+    const abilities = ['str','dex','int','per','ldr','log'];
+    const updates = {};
+    const rolls = [];
+
+    for (const ab of abilities) {
+      const r = new Roll('1d100');
+      await r.evaluate({async: true});
+      const value = r.total === 0 ? 100 : r.total; // treat 0 as 100
+      const entry = table.find(t => value <= t.max);
+      const score = entry ? entry.score : 45;
+      updates[`system.${ab}.value`] = score;
+      updates[`system.${ab}.modifier`] = 0;
+      rolls.push({ability: ab.toUpperCase(), roll: value, score, desc: entry ? entry.desc : ''});
+    }
+
+    // Set stamina max to STR score and current to same value
+    const strScore = updates['system.str.value'];
+    updates['system.stamina.value'] = strScore;
+    updates['system.stamina.current'] = strScore;
+
+    await this.actor.update(updates);
+
+    // Build chat message
+    const lines = rolls.map(r => `${r.ability}: d100=${r.roll} → ${r.score} (${r.desc})`).join('\n');
+    const content = `<h3>Initial Stats for ${this.actor.name}</h3><pre>${lines}</pre>`;
+    ChatMessage.create({content, speaker: ChatMessage.getSpeaker({actor: this.actor})});
   }
 
   async _onAbilityRoll(event) {

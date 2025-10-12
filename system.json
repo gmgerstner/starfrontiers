@@ -2,7 +2,7 @@
   "id": "starfrontiers",
   "title": "Star Frontiers",
   "description": "A game system for playing Star Frontiers in Foundry VTT",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
