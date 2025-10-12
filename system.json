@@ -2,14 +2,14 @@
   "id": "starfrontiers",
   "title": "Star Frontiers",
   "description": "A game system for playing Star Frontiers in Foundry VTT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": {
-    "minimum": "11",
-    "verified": "12"
+    "minimum": "13",
+    "verified": "13"
   },
   "authors": [
     {
-      "name": "Star Frontiers Community"
+      "name": "G.M.Gerstner"
     }
   ],
   "esmodules": [
@@ -30,8 +30,8 @@
   "gridUnits": "m",
   "primaryTokenAttribute": "stamina",
   "secondaryTokenAttribute": "stamina",
-  "url": "https://github.com/yourusername/starfrontiers-foundry",
-  "manifest": "https://github.com/yourusername/starfrontiers-foundry/releases/latest/download/system.json",
-  "download": "https://github.com/yourusername/starfrontiers-foundry/archive/refs/heads/main.zip",
+  "url": "https://github.com/gmgerstner/starfrontiers",
+  "manifest": "https://github.com/gmgerstner/starfrontiers/releases/latest/download/system.json",
+  "download": "https://github.com/gmgerstner/starfrontiers/archive/refs/heads/main.zip",
   "license": "LICENSE"
 }
