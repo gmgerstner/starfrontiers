@@ -32,6 +32,6 @@
   "secondaryTokenAttribute": "stamina",
   "url": "https://github.com/gmgerstner/starfrontiers",
   "manifest": "https://github.com/gmgerstner/starfrontiers/releases/latest/download/system.json",
-  "download": "https://github.com/gmgerstner/starfrontiers/archive/refs/heads/main.zip",
+  "download": "https://github.com/gmgerstner/starfrontiers/releases/latest/download/starfrontiers.zip",
   "license": "LICENSE"
 }

@@ -25,18 +25,13 @@ jobs:
       - name: Set up zip name
         id: name
         run: |
-          zipname="${{ steps.tag.outputs.tag }}.zip"
-          echo "zipname=$zipname" >> $GITHUB_OUTPUT
+          echo "zipname=starfrontiers.zip" >> $GITHUB_OUTPUT
 
-      - name: Create release package
+      - name: Create release package (git-archive)
         run: |
           mkdir -p release
-          # Copy only the system folder files needed for Foundry
-          rsync -av --exclude='.git' --exclude='.github' --exclude='node_modules' --exclude='tests' ./ ./release/starfrontiers
-          cd release
-          zip -r "$ZIPNAME" starfrontiers
-        env:
-          ZIPNAME: ${{ steps.name.outputs.zipname }}
+          git archive --format=zip --prefix=starfrontiers/ HEAD -o release/starfrontiers.zip
+        shell: bash
 
       - name: Create GitHub Release
         id: create_release
@@ -50,17 +45,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload release asset
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload zip to release
+      - name: Upload starfrontiers.zip to release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release/${{ steps.name.outputs.zipname }}
-          asset_name: ${{ steps.name.outputs.zipname }}
+          asset_path: ./release/starfrontiers.zip
+          asset_name: starfrontiers.zip
           asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload system.json manifest to release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./system.json
+          asset_name: system.json
+          asset_content_type: application/json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
