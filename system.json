@@ -33,7 +33,6 @@
   "url": "https://github.com/gmgerstner/starfrontiers",
   "manifest": "https://github.com/gmgerstner/starfrontiers/releases/latest/download/system.json",
   "download": "https://github.com/gmgerstner/starfrontiers/releases/latest/download/starfrontiers.zip",
-  "img": "assets/icons/starfrontiers-logo.png",
-  "banner": "assets/icons/starfrontiers-banner.png",
+  "background": "systems/starfrontiers/assets/starfrontiers-logo.png",
   "license": "LICENSE"
 }
