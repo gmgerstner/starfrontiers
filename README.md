@@ -4,7 +4,7 @@ A complete game system implementation for playing Star Frontiers in Foundry Virt
 
 ## Features
 
-- **Character & NPC Sheets**: Redesigned sheets styled after the classic Alpha Dawn character record — paired ability score cards (STR/STA, DEX/RS, INT/LOG, PER/LDR) and an always-visible vitals bar (Current/Max STA, Initiative Modifier, Defense). The character sheet separates items into their own tabs: Skills, Weapons, Defenses, Equipment, and Biography.
+- **Character & NPC Sheets**: Redesigned sheets styled after the classic Alpha Dawn character record — a compact header (portrait, name, race, XP, credits) over tabbed content. The **Abilities** tab (default) holds the paired ability score cards (STR/STA, DEX/RS, INT/LOG, PER/LDR), the vitals bar (Current/Max STA, Initiative Modifier, Defense), and the Roll/Lock Stats controls. Items live on their own tabs — characters: Abilities, Skills, Weapons, Defenses, Equipment, Biography; NPCs: Abilities, Gear, Description.
 - **Ability Scores**: The six tracked abilities (STR, DEX, INT, PER, LDR, LOG) plus paired STA and RS. Effective scores drive every roll; RS derives IM, and STR/DEX drive Max STA.
 - **Races (drag & drop)**: Race is a first-class item type, à la dnd5e. Drag a race onto a character to fill its race slot (one race per character, auto-replacing). Ships with a **Races compendium** preloaded with the four core races (Human, Dralasite, Vrusk, Yazirian) including lore and special abilities.
 - **Racial Ability Modifiers**: Each race can modify ability scores. The modifier changes the **effective** score, so it feeds ability checks, skill checks, RS/IM, and Max STA. Modified abilities show a badge and effective total on the sheet.
@@ -37,13 +37,15 @@ A complete game system implementation for playing Star Frontiers in Foundry Virt
 ```
 starfrontiers/
 ├── module/
+│   ├── data/
+│   │   └── models.mjs         # System Data Models (schemas for every actor/item type)
 │   ├── documents/
 │   │   ├── actor.mjs          # Actor document: effective scores, racial mods, totalDefense, applyDamage
 │   │   └── item.mjs           # Item document: weapon attacks, skill checks, attack chat card
 │   ├── sheets/
 │   │   ├── actor-sheet.mjs    # Actor sheet: race drop, item create, equip toggle, stat rolling
 │   │   └── item-sheet.mjs     # Item sheet class
-│   └── starfrontiers.mjs      # Init, Handlebars helpers, apply-damage chat hook
+│   └── starfrontiers.mjs      # Init, data-model + type registration, Handlebars helpers, chat hooks
 ├── templates/
 │   ├── actor/
 │   │   ├── actor-character-sheet.hbs
@@ -66,10 +68,13 @@ starfrontiers/
 ├── lang/
 │   └── en.json                # English localization
 ├── package.json               # Build tooling (Foundry CLI) and scripts
-├── system.json                # System manifest (registers the races compendium)
-├── template.json              # Data model templates
+├── system.json                # System manifest (document types, compendiums, grid)
 └── README.md
 ```
+
+Data for each actor/item subtype is defined by **System Data Models** in `module/data/models.mjs`
+(registered on `CONFIG.Actor.dataModels` / `CONFIG.Item.dataModels`) with the subtypes declared under
+`documentTypes` in `system.json`. This replaces the legacy `template.json`.
 
 ## Usage
 
@@ -124,7 +129,7 @@ Each compendium is a compiled LevelDB pack. To change one:
 The system uses a dark sci-fi theme with cyan accents. To customize:
 - Edit `styles/starfrontiers.css` for visual changes.
 - Modify templates in the `templates/` folder.
-- Adjust data models in `template.json`.
+- Adjust data models (field schemas) in `module/data/models.mjs`.
 
 ## Notes on Rules Accuracy
 

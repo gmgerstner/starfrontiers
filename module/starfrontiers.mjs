@@ -2,6 +2,7 @@ import { StarFrontiersActor } from "./documents/actor.mjs";
 import { StarFrontiersItem } from "./documents/item.mjs";
 import { StarFrontiersActorSheet } from "./sheets/actor-sheet.mjs";
 import { StarFrontiersItemSheet } from "./sheets/item-sheet.mjs";
+import { dataModels } from "./data/models.mjs";
 
 Hooks.once('init', async function() {
   console.log('Star Frontiers | Initializing Star Frontiers Game System');
@@ -42,6 +43,10 @@ Hooks.once('init', async function() {
 
   CONFIG.Actor.documentClass = StarFrontiersActor;
   CONFIG.Item.documentClass = StarFrontiersItem;
+
+  // System Data Models (replaces the deprecated template.json).
+  CONFIG.Actor.dataModels = dataModels.Actor;
+  CONFIG.Item.dataModels = dataModels.Item;
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("starfrontiers", StarFrontiersActorSheet, { 

@@ -1,6 +1,6 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="44" width="44"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"/></h1>
 
@@ -27,17 +27,26 @@
           <input type="number" step="1" min="0" name="system.credits" value="{{system.credits}}" data-dtype="Number"/>
         </div>
       </div>
-
-      <div class="header-actions">
-        <button type="button" class="roll-initial-stats small" title="Roll d100 for each ability to generate initial base scores" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}><i class="fas fa-dice-d10"></i> Roll Initial Stats</button>
-        <button type="button" class="toggle-stats-lock small" title="Lock stats to prevent editing or accidental rolls" {{#unless owner}}disabled{{/unless}}><i class="fas {{#if flags.starfrontiers.statsLocked}}fa-lock{{else}}fa-lock-open{{/if}}"></i> {{#if flags.starfrontiers.statsLocked}}Unlock{{else}}Lock{{/if}} Stats</button>
-      </div>
     </div>
   </header>
 
-  <section class="ability-block">
-    <h3 class="block-title">Ability Scores</h3>
-    <div class="ability-grid">
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="abilities" title="Abilities"><i class="fas fa-dumbbell"></i><span class="tab-label"> Abilities</span></a>
+    <a class="item" data-tab="skills" title="Skills"><i class="fas fa-graduation-cap"></i><span class="tab-label"> Skills</span></a>
+    <a class="item" data-tab="weapons" title="Weapons"><i class="fas fa-crosshairs"></i><span class="tab-label"> Weapons</span></a>
+    <a class="item" data-tab="defenses" title="Defenses"><i class="fas fa-shield-alt"></i><span class="tab-label"> Defenses</span></a>
+    <a class="item" data-tab="equipment" title="Equipment"><i class="fas fa-box-open"></i><span class="tab-label"> Gear</span></a>
+    <a class="item" data-tab="bio" title="Biography"><i class="fas fa-book"></i><span class="tab-label"> Bio</span></a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab abilities" data-group="primary" data-tab="abilities">
+      <div class="ability-actions">
+        <button type="button" class="roll-initial-stats small" title="Roll d100 for each ability to generate initial base scores" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}><i class="fas fa-dice-d10"></i> Roll Initial Stats</button>
+        <button type="button" class="toggle-stats-lock small" title="Lock stats to prevent editing or accidental rolls" {{#unless owner}}disabled{{/unless}}><i class="fas {{#if flags.starfrontiers.statsLocked}}fa-lock{{else}}fa-lock-open{{/if}}"></i> {{#if flags.starfrontiers.statsLocked}}Unlock{{else}}Lock{{/if}} Stats</button>
+      </div>
+
+      <div class="ability-grid">
 
       <div class="ability-pair">
         <div class="score">
@@ -111,17 +120,8 @@
         <input class="vital-readonly" type="number" value="{{totalDefense}}" readonly aria-readonly="true" title="Total defense from equipped armor"/>
       </div>
     </div>
-  </section>
+    </div>
 
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="skills" title="Skills"><i class="fas fa-graduation-cap"></i><span class="tab-label"> Skills</span></a>
-    <a class="item" data-tab="weapons" title="Weapons"><i class="fas fa-crosshairs"></i><span class="tab-label"> Weapons</span></a>
-    <a class="item" data-tab="defenses" title="Defenses"><i class="fas fa-shield-alt"></i><span class="tab-label"> Defenses</span></a>
-    <a class="item" data-tab="equipment" title="Equipment"><i class="fas fa-box-open"></i><span class="tab-label"> Gear</span></a>
-    <a class="item" data-tab="bio" title="Biography"><i class="fas fa-book"></i><span class="tab-label"> Bio</span></a>
-  </nav>
-
-  <section class="sheet-body">
     <div class="tab skills" data-group="primary" data-tab="skills">
       <div class="items-section">
         {{#each skillGroups as |group|}}

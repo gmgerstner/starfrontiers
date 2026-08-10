@@ -2,7 +2,7 @@
   "id": "starfrontiers",
   "title": "Star Frontiers",
   "description": "A game system for playing Star Frontiers in Foundry VTT",
-  "version": "1.0.14",
+  "version": "1.0.19",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -15,6 +15,19 @@
   "esmodules": [
     "module/starfrontiers.mjs"
   ],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {}
+    },
+    "Item": {
+      "weapon": {},
+      "armor": {},
+      "equipment": {},
+      "skill": {},
+      "race": {}
+    }
+  },
   "styles": [
     "styles/starfrontiers.css"
   ],
@@ -56,8 +69,10 @@
       "path": "lang/en.json"
     }
   ],
-  "gridDistance": 1.5,
-  "gridUnits": "m",
+  "grid": {
+    "distance": 1.5,
+    "units": "m"
+  },
   "primaryTokenAttribute": "stamina",
   "secondaryTokenAttribute": "stamina",
   "url": "https://github.com/gmgerstner/starfrontiers",

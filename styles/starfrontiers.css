@@ -28,62 +28,71 @@
 
 .starfrontiers .sheet-header {
   display: flex;
-  align-items: stretch;
-  gap: 14px;
+  align-items: center;
+  gap: 8px;
   background: linear-gradient(180deg, #232a36 0%, #1b212b 100%);
   border-bottom: 2px solid var(--sf-accent);
-  padding: 12px 14px;
+  padding: 5px 10px;
 }
 
 .starfrontiers .sheet-header .profile-img {
-  flex: 0 0 96px;
-  width: 96px;
-  height: 96px;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   object-fit: cover;
-  border: 2px solid var(--sf-accent);
-  border-radius: 6px;
+  border: 1px solid var(--sf-accent);
+  border-radius: 5px;
   background: #000;
 }
 
 .starfrontiers .sheet-header .header-fields {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
   min-width: 0;
 }
 
 .starfrontiers .sheet-header .charname {
+  flex: 1 1 150px;
+  min-width: 110px;
   margin: 0;
   border: none;
 }
 
 .starfrontiers .sheet-header .charname input {
   width: 100%;
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.5px;
   border: none;
   border-bottom: 1px solid var(--sf-border);
   background: transparent;
   color: var(--sf-accent);
-  padding: 2px 0;
+  padding: 0;
+}
+
+.starfrontiers .sheet-header input {
+  padding: 2px 5px;
 }
 
 .starfrontiers .header-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  gap: 4px 8px;
 }
 
 .starfrontiers .meta-field {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .starfrontiers .meta-field label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -91,46 +100,47 @@
 }
 
 .starfrontiers .meta-field input {
-  width: 90px;
+  width: 68px;
   text-align: center;
 }
 
-.starfrontiers .race-field { flex: 1 1 100%; }
+.starfrontiers .race-field { flex: 0 1 auto; min-width: 0; }
 
 .starfrontiers .race-slot {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: var(--sf-panel-2);
   border: 1px solid var(--sf-accent-dim);
   border-radius: 4px;
-  padding: 3px 8px;
+  padding: 1px 6px;
 }
 
 .starfrontiers .race-slot img {
   border: none;
   border-radius: 3px;
-  flex: 0 0 22px;
+  flex: 0 0 18px;
+  height: 18px;
 }
 
 .starfrontiers .race-slot .race-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--sf-text);
 }
 
-.starfrontiers .race-slot .item-control { font-size: 12px; }
+.starfrontiers .race-slot .item-control { font-size: 11px; }
 
 .starfrontiers .race-empty {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 11px;
   font-style: italic;
   color: var(--sf-muted);
   border: 1px dashed var(--sf-border);
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 2px 6px;
 }
 
 .starfrontiers .header-actions {
@@ -142,10 +152,11 @@
 
 /* ---- Ability score block ----------------------------------------------- */
 
-.starfrontiers .ability-block {
-  padding: 10px 12px;
-  background: var(--sf-bg);
-  border-bottom: 1px solid var(--sf-border);
+.starfrontiers .ability-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .starfrontiers .block-title,
@@ -490,7 +501,7 @@
 .starfrontiers .form-group {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 7px 0;
 }
 
 .starfrontiers .form-group label {

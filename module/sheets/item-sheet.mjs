@@ -4,7 +4,7 @@ export class StarFrontiersItemSheet extends ItemSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["starfrontiers", "sheet", "item"],
       width: 520,
-      height: 480,
+      height: 560,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
   }

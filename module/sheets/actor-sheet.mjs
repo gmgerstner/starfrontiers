@@ -4,8 +4,8 @@ export class StarFrontiersActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["starfrontiers", "sheet", "actor"],
       width: 720,
-      height: 680,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
+      height: 620,
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "abilities" }]
     });
   }
 
