@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillBeamWpn01",
+  "_key": "!items!sfSkillBeamWpn01",
+  "name": "Beam Weapons",
+  "type": "skill",
+  "img": "icons/svg/sun.svg",
+  "system": {
+    "level": 1,
+    "ability": "dex",
+    "psa": "military",
+    "description": "<p>Skill with beam weapons — laser pistols and rifles, electrostunners, and sonic devices. Governs the chance to hit with such weapons.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

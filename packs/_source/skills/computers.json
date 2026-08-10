@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillComputr01",
+  "_key": "!items!sfSkillComputr01",
+  "name": "Computers",
+  "type": "skill",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "level": 1,
+    "ability": "log",
+    "psa": "technological",
+    "description": "<p>Operate, access, and manipulate computers, and bypass their security.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 900000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

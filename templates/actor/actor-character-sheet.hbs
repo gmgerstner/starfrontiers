@@ -114,41 +114,49 @@
   </section>
 
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="skills"><i class="fas fa-graduation-cap"></i> Skills</a>
-    <a class="item" data-tab="gear"><i class="fas fa-box-open"></i> Gear</a>
-    <a class="item" data-tab="bio"><i class="fas fa-book"></i> Biography</a>
+    <a class="item" data-tab="skills" title="Skills"><i class="fas fa-graduation-cap"></i><span class="tab-label"> Skills</span></a>
+    <a class="item" data-tab="weapons" title="Weapons"><i class="fas fa-crosshairs"></i><span class="tab-label"> Weapons</span></a>
+    <a class="item" data-tab="defenses" title="Defenses"><i class="fas fa-shield-alt"></i><span class="tab-label"> Defenses</span></a>
+    <a class="item" data-tab="equipment" title="Equipment"><i class="fas fa-box-open"></i><span class="tab-label"> Gear</span></a>
+    <a class="item" data-tab="bio" title="Biography"><i class="fas fa-book"></i><span class="tab-label"> Bio</span></a>
   </nav>
 
   <section class="sheet-body">
     <div class="tab skills" data-group="primary" data-tab="skills">
       <div class="items-section">
-        <header class="section-header">
-          <h3>Skills</h3>
-          <a class="item-control item-create" data-type="skill" title="Add Skill"><i class="fas fa-plus"></i></a>
-        </header>
-        <ol class="items-list">
-          <li class="item item-head flexrow">
-            <span class="item-name">Name</span>
-            <span class="item-detail">Level</span>
-            <span class="item-controls-head">&nbsp;</span>
-          </li>
-          {{#each skills as |item id|}}
-            <li class="item flexrow" data-item-id="{{item._id}}">
-              <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
-              <h4 class="item-name">{{item.name}}</h4>
-              <span class="item-detail">{{item.system.level}}</span>
-              <div class="item-controls">
-                <a class="item-control item-roll" title="Roll Skill"><i class="fas fa-dice-d20"></i></a>
-                <a class="item-control item-edit" title="Edit Skill"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Skill"><i class="fas fa-trash"></i></a>
-              </div>
+        {{#each skillGroups as |group|}}
+          <header class="section-header">
+            <h3>{{group.label}}</h3>
+            {{#if group.key}}
+              <a class="item-control item-create" data-type="skill" data-psa="{{group.key}}" title="Add {{group.label}} Skill"><i class="fas fa-plus"></i></a>
+            {{/if}}
+          </header>
+          <ol class="items-list">
+            <li class="item item-head flexrow">
+              <span class="item-name">Name</span>
+              <span class="item-detail">Abil</span>
+              <span class="item-detail">Lvl</span>
+              <span class="item-controls-head">&nbsp;</span>
             </li>
-          {{/each}}
-        </ol>
+            {{#each group.skills as |item id|}}
+              <li class="item flexrow" data-item-id="{{item._id}}">
+                <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
+                <h4 class="item-name">{{item.name}}</h4>
+                <span class="item-detail">{{item.system.ability}}</span>
+                <span class="item-detail">{{item.system.level}}</span>
+                <div class="item-controls">
+                  <a class="item-control item-roll" title="Roll Skill"><i class="fas fa-dice-d20"></i></a>
+                  <a class="item-control item-edit" title="Edit Skill"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Skill"><i class="fas fa-trash"></i></a>
+                </div>
+              </li>
+            {{/each}}
+          </ol>
+        {{/each}}
       </div>
     </div>
 
-    <div class="tab gear" data-group="primary" data-tab="gear">
+    <div class="tab weapons" data-group="primary" data-tab="weapons">
       <div class="items-section">
         <header class="section-header">
           <h3>Weapons</h3>
@@ -177,7 +185,11 @@
             </li>
           {{/each}}
         </ol>
+      </div>
+    </div>
 
+    <div class="tab defenses" data-group="primary" data-tab="defenses">
+      <div class="items-section">
         <header class="section-header">
           <h3>Defenses</h3>
           <a class="item-control item-create" data-type="armor" title="Add Armor"><i class="fas fa-plus"></i></a>
@@ -203,7 +215,11 @@
             </li>
           {{/each}}
         </ol>
+      </div>
+    </div>
 
+    <div class="tab equipment" data-group="primary" data-tab="equipment">
+      <div class="items-section">
         <header class="section-header">
           <h3>Equipment</h3>
           <a class="item-control item-create" data-type="equipment" title="Add Equipment"><i class="fas fa-plus"></i></a>

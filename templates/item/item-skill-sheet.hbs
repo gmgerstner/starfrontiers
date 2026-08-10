@@ -18,6 +18,15 @@
 
     <div class="tab attributes" data-group="primary" data-tab="attributes">
       <div class="form-group">
+        <label>PSA:</label>
+        <select name="system.psa">
+          <option value="" {{#if (eq system.psa '')}}selected{{/if}}>&mdash;</option>
+          <option value="military" {{#if (eq system.psa 'military')}}selected{{/if}}>Military</option>
+          <option value="technological" {{#if (eq system.psa 'technological')}}selected{{/if}}>Technological</option>
+          <option value="biosocial" {{#if (eq system.psa 'biosocial')}}selected{{/if}}>Biosocial</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label>Skill Level:</label>
         <input type="number" name="system.level" value="{{system.level}}" data-dtype="Number"/>
       </div>

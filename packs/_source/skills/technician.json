@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillTechncn01",
+  "_key": "!items!sfSkillTechncn01",
+  "name": "Technician",
+  "type": "skill",
+  "img": "icons/svg/clockwork.svg",
+  "system": {
+    "level": 1,
+    "ability": "log",
+    "psa": "technological",
+    "description": "<p>Operate, repair, and jury-rig machinery, powered equipment, and vehicles.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 700000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

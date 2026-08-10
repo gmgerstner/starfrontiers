@@ -219,6 +219,22 @@ export class StarFrontiersActorSheet extends ActorSheet {
     context.skills = skills;
     context.race = race;
 
+    // Group skills by Primary Skill Area for display.
+    const psaKeys = ['military', 'technological', 'biosocial'];
+    const buckets = { military: [], technological: [], biosocial: [], other: [] };
+    for (const s of skills) {
+      const key = psaKeys.includes(s.system?.psa) ? s.system.psa : 'other';
+      buckets[key].push(s);
+    }
+    context.skillGroups = [
+      { key: 'military', label: 'Military', skills: buckets.military },
+      { key: 'technological', label: 'Technological', skills: buckets.technological },
+      { key: 'biosocial', label: 'Biosocial', skills: buckets.biosocial }
+    ];
+    if (buckets.other.length) {
+      context.skillGroups.push({ key: '', label: 'Other', skills: buckets.other });
+    }
+
     // Total defense from equipped armor (for the vitals display).
     context.totalDefense = armor.reduce(
       (sum, i) => sum + (i.system && i.system.equipped ? (Number(i.system.defense) || 0) : 0), 0);
@@ -391,10 +407,14 @@ export class StarFrontiersActorSheet extends ActorSheet {
    */
   async _onItemCreate(event) {
     event.preventDefault();
-    const type = event.currentTarget.dataset.type;
+    const dataset = event.currentTarget.dataset;
+    const type = dataset.type;
     if (!type) return;
     const label = type.charAt(0).toUpperCase() + type.slice(1);
-    const itemData = { name: `New ${label}`, type, system: {} };
+    const system = {};
+    // Seed the PSA when creating a skill from a specific Primary Skill Area group.
+    if (type === 'skill' && dataset.psa) system.psa = dataset.psa;
+    const itemData = { name: `New ${label}`, type, system };
     return this.actor.createEmbeddedDocuments('Item', [itemData]);
   }
 

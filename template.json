@@ -48,6 +48,7 @@
       "ammo": 20,
       "ammoMax": 20,
       "weaponType": "ranged",
+      "skill": "",
       "skillLevel": 0
     },
     "armor": {
@@ -63,6 +64,7 @@
       "templates": [],
       "level": 1,
       "ability": "dex",
+      "psa": "",
       "description": ""
     },
     "race": {

@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillEnviron01",
+  "_key": "!items!sfSkillEnviron01",
+  "name": "Environmental",
+  "type": "skill",
+  "img": "icons/svg/regen.svg",
+  "system": {
+    "level": 1,
+    "ability": "int",
+    "psa": "biosocial",
+    "description": "<p>Survival, ecology, and the analysis of planetary environments and lifeforms.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 1100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

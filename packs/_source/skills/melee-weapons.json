@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillMelee0001",
+  "_key": "!items!sfSkillMelee0001",
+  "name": "Melee Weapons",
+  "type": "skill",
+  "img": "icons/svg/hazard.svg",
+  "system": {
+    "level": 1,
+    "ability": "str",
+    "psa": "military",
+    "description": "<p>Skill in hand-to-hand and melee combat — knives, swords, electric swords, stunsticks, and unarmed attacks.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 400000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

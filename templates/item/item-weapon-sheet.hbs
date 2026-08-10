@@ -41,8 +41,19 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Weapon Skill Lvl:</label>
-        <input type="number" step="1" min="0" name="system.skillLevel" value="{{system.skillLevel}}" data-dtype="Number" title="Adds +10% to-hit per level. Ranged attacks use DEX, melee use STR."/>
+        <label>Linked Skill:</label>
+        <input type="text" list="sf-weapon-skills" name="system.skill" value="{{system.skill}}" placeholder="e.g. Beam Weapons" title="If set, to-hit uses the character's skill of this name. Leave blank to use the manual level below."/>
+        <datalist id="sf-weapon-skills">
+          <option value="Beam Weapons"></option>
+          <option value="Gyrojet Weapons"></option>
+          <option value="Projectile Weapons"></option>
+          <option value="Melee Weapons"></option>
+          <option value="Thrown Weapons"></option>
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label>Manual Skill Lvl:</label>
+        <input type="number" step="1" min="0" name="system.skillLevel" value="{{system.skillLevel}}" data-dtype="Number" title="Fallback when no Linked Skill is set (or the character lacks it). Adds +10% to-hit per level. Ranged uses DEX, melee uses STR."/>
       </div>
       <div class="form-group">
         <label>Quantity:</label>

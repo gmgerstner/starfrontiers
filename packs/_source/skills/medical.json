@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillMedical01",
+  "_key": "!items!sfSkillMedical01",
+  "name": "Medical",
+  "type": "skill",
+  "img": "icons/svg/heal.svg",
+  "system": {
+    "level": 1,
+    "ability": "log",
+    "psa": "biosocial",
+    "description": "<p>Treat wounds, diseases, infections, and poisons using medkits and equipment.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 1000000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

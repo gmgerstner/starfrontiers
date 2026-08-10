@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillPsySoc001",
+  "_key": "!items!sfSkillPsySoc001",
+  "name": "Psycho-social",
+  "type": "skill",
+  "img": "icons/svg/eye.svg",
+  "system": {
+    "level": 1,
+    "ability": "per",
+    "psa": "biosocial",
+    "description": "<p>Understand and influence the attitudes and reactions of individuals and groups.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 1200000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

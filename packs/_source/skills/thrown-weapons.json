@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillThrown001",
+  "_key": "!items!sfSkillThrown001",
+  "name": "Thrown Weapons",
+  "type": "skill",
+  "img": "icons/svg/net.svg",
+  "system": {
+    "level": 1,
+    "ability": "dex",
+    "psa": "military",
+    "description": "<p>Skill throwing grenades and other thrown weapons accurately.</p>"
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 500000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

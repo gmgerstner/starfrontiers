@@ -4,10 +4,11 @@ A complete game system implementation for playing Star Frontiers in Foundry Virt
 
 ## Features
 
-- **Character & NPC Sheets**: Redesigned sheets styled after the classic Alpha Dawn character record — paired ability score cards (STR/STA, DEX/RS, INT/LOG, PER/LDR), always-visible vitals bar (Current/Max STA, Initiative Modifier, Defense), and tabbed Skills / Gear / Biography sections.
+- **Character & NPC Sheets**: Redesigned sheets styled after the classic Alpha Dawn character record — paired ability score cards (STR/STA, DEX/RS, INT/LOG, PER/LDR) and an always-visible vitals bar (Current/Max STA, Initiative Modifier, Defense). The character sheet separates items into their own tabs: Skills, Weapons, Defenses, Equipment, and Biography.
 - **Ability Scores**: The six tracked abilities (STR, DEX, INT, PER, LDR, LOG) plus paired STA and RS. Effective scores drive every roll; RS derives IM, and STR/DEX drive Max STA.
 - **Races (drag & drop)**: Race is a first-class item type, à la dnd5e. Drag a race onto a character to fill its race slot (one race per character, auto-replacing). Ships with a **Races compendium** preloaded with the four core races (Human, Dralasite, Vrusk, Yazirian) including lore and special abilities.
 - **Racial Ability Modifiers**: Each race can modify ability scores. The modifier changes the **effective** score, so it feeds ability checks, skill checks, RS/IM, and Max STA. Modified abilities show a badge and effective total on the sheet.
+- **Skills (PSA)**: Skills carry a Primary Skill Area (Military / Technological / Biosocial) and are grouped by PSA on the character sheet. Ships with a **Skills compendium** of the core Star Frontiers skills to drag onto characters. Weapons can link to a skill by name so their to-hit uses the character's owned skill level.
 - **Combat**: Weapon attacks resolve to-hit (`d100 ≤ effective ability + weapon skill×10`; ranged uses DEX, melee uses STR), roll damage, spend ammo, subtract the target's equipped-armor defense, and apply the result to the target's Current STA. A chat card summarises the attack with Apply-damage buttons.
 - **Range Modifiers**: Ranged attacks measure the distance to each target and apply a to-hit modifier by range band (Point Blank / Short / Medium / Long / Extreme, out-of-range beyond that). Bands are multiples of the weapon's Range and are configurable in `CONFIG.STARFRONTIERS.rangeBrackets`.
 - **Initiative**: The combat tracker rolls `1d10 + IM` (Initiative Modifier = RS ÷ 10) for each combatant.
@@ -55,7 +56,9 @@ starfrontiers/
 │       └── item-race-sheet.hbs
 ├── packs/
 │   ├── _source/races/         # Editable JSON source for the Races compendium
-│   └── races/                 # Compiled LevelDB pack (built via npm run build:packs)
+│   ├── _source/skills/        # Editable JSON source for the Skills compendium
+│   ├── races/                 # Compiled Races LevelDB pack (built via npm run build:packs)
+│   └── skills/                # Compiled Skills LevelDB pack
 ├── scripts/
 │   └── build-packs.mjs        # Compiles packs/_source/* into LevelDB packs
 ├── styles/
@@ -94,17 +97,22 @@ starfrontiers/
 - Edit a race's **Ability Score Modifiers** on its item sheet (Attributes tab); positive or negative values.
 - The character's affected ability cards show the racial delta and effective total.
 
+### Skills
+- Open **Compendium Packs → Skills** and drag skills onto a character; they sort into their PSA (Military / Technological / Biosocial) on the Skills tab. Use the **+** on a PSA header to add a blank skill already tagged to that area.
+- Skill check: roll 1d100 under `effective ability + (skill level × 10)`.
+- **Weapon linking**: set a weapon's **Linked Skill** to a skill name (e.g. *Beam Weapons*). Its attack to-hit then uses the character's level in that skill, falling back to the weapon's Manual Skill Level if the character doesn't have it.
+
 ### Dice Rolling
 - Ability checks: roll 1d100 under the effective ability score.
 - Skill checks: roll 1d100 under `effective ability + (skill level × 10)`.
 
 ## Development
 
-### Editing the Races compendium
-The compendium is a compiled LevelDB pack. To change it:
-1. Edit the JSON under `packs/_source/races/`.
-2. Close Foundry (it locks the pack while running).
-3. Run `npm install` once, then `npm run build:packs`.
+### Editing the compendiums (Races, Skills)
+Each compendium is a compiled LevelDB pack. To change one:
+1. Edit the JSON under `packs/_source/<pack>/` (`races` or `skills`).
+2. Close Foundry (it locks a pack while running).
+3. Run `npm install` once, then `npm run build:packs` (compiles every folder under `packs/_source/`).
 
 ### General
 1. Edit source files in their respective directories.

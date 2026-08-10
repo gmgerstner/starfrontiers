@@ -2,7 +2,7 @@
   "id": "starfrontiers",
   "title": "Star Frontiers",
   "description": "A game system for playing Star Frontiers in Foundry VTT",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -29,13 +29,24 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "skills",
+      "label": "Skills",
+      "path": "packs/skills",
+      "type": "Item",
+      "system": "starfrontiers",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "packFolders": [
     {
       "name": "Star Frontiers",
       "sorting": "m",
-      "packs": ["races"]
+      "packs": ["races", "skills"]
     }
   ],
   "languages": [

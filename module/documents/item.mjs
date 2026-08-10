@@ -79,10 +79,12 @@ export class StarFrontiersItem extends Item {
     }
 
     // To-hit target: effective ability score + weapon skill bonus (10% per level).
+    // Skill level comes from the character's linked skill item when set, otherwise
+    // from the weapon's manual skillLevel field.
     const abilityKey = isRanged ? 'dex' : 'str';
     const ability = actor.system?.[abilityKey];
     const abilityScore = ability?.total ?? ability?.value ?? 50;
-    const skillLevel = Number(sys.skillLevel) || 0;
+    const skillLevel = this._resolveSkillLevel();
     const toHitTarget = Math.min(100, Math.max(1, abilityScore + (skillLevel * 10)));
 
     const attackRoll = new Roll('1d100');
@@ -167,6 +169,23 @@ export class StarFrontiersItem extends Item {
       }
     }
     return { label: 'Out of range', mod: 0, distance, outOfRange: true };
+  }
+
+  /**
+   * Resolve the skill level for this weapon's to-hit: prefer the character's owned
+   * skill item matching the weapon's linked skill name; fall back to the weapon's
+   * manual skillLevel field.
+   * @returns {number}
+   */
+  _resolveSkillLevel() {
+    const sys = this.system;
+    const linked = String(sys.skill ?? '').trim();
+    if (linked && this.actor) {
+      const match = this.actor.items.find(
+        i => i.type === 'skill' && i.name.toLowerCase() === linked.toLowerCase());
+      if (match) return Number(match.system?.level) || 0;
+    }
+    return Number(sys.skillLevel) || 0;
   }
 
   /** Build the HTML chat card for a weapon attack. */
