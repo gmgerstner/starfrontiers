@@ -1,79 +1,243 @@
+/* ==========================================================================
+   Star Frontiers — sheet styling
+   Palette: deep space charcoal + Frontier cyan, styled after the classic
+   Alpha Dawn character record.
+   ========================================================================== */
+
 .starfrontiers {
+  --sf-bg: #14171c;
+  --sf-panel: #1f2530;
+  --sf-panel-2: #262d3a;
+  --sf-field: #10141a;
+  --sf-border: #3a4250;
+  --sf-accent: #00a8ff;
+  --sf-accent-dim: #0d5f86;
+  --sf-text: #e4e8ee;
+  --sf-muted: #8a95a5;
+  --sf-danger: #ff6b6b;
   font-family: "Roboto", sans-serif;
 }
 
 .starfrontiers .window-content {
-  background: #1a1a1a;
-  color: #e0e0e0;
+  background: var(--sf-bg);
+  color: var(--sf-text);
+  padding: 0;
 }
+
+/* ---- Header ------------------------------------------------------------- */
 
 .starfrontiers .sheet-header {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: #2a2a2a;
-  border-bottom: 2px solid #00a8ff;
-  padding: 10px;
+  align-items: stretch;
+  gap: 14px;
+  background: linear-gradient(180deg, #232a36 0%, #1b212b 100%);
+  border-bottom: 2px solid var(--sf-accent);
+  padding: 12px 14px;
 }
 
 .starfrontiers .sheet-header .profile-img {
-  flex: 0 0 100px;
-  height: 100px;
-  margin-right: 20px;
-  border: 2px solid #00a8ff;
-  border-radius: 5px;
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 2px solid var(--sf-accent);
+  border-radius: 6px;
+  background: #000;
 }
 
 .starfrontiers .sheet-header .header-fields {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.starfrontiers .sheet-header .charname {
+  margin: 0;
+  border: none;
 }
 
 .starfrontiers .sheet-header .charname input {
+  width: 100%;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   border: none;
+  border-bottom: 1px solid var(--sf-border);
   background: transparent;
-  color: #00a8ff;
-  margin-bottom: 10px;
+  color: var(--sf-accent);
+  padding: 2px 0;
 }
 
-.starfrontiers .resource {
+.starfrontiers .header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.starfrontiers .meta-field {
   display: flex;
   align-items: center;
-  margin: 5px 0;
+  gap: 6px;
 }
 
-.starfrontiers .resource label {
-  flex: 0 0 80px;
-  font-weight: bold;
+.starfrontiers .meta-field label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sf-muted);
 }
 
-.starfrontiers .resource input {
-  width: 60px;
+.starfrontiers .meta-field input {
+  width: 90px;
   text-align: center;
-  background: #3a3a3a;
-  border: 1px solid #555;
-  color: #e0e0e0;
-  margin: 0 5px;
 }
+
+.starfrontiers .header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* ---- Ability score block ----------------------------------------------- */
+
+.starfrontiers .ability-block {
+  padding: 12px 14px;
+  background: var(--sf-bg);
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.starfrontiers .block-title,
+.starfrontiers .section-header h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--sf-accent);
+}
+
+.starfrontiers .ability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.starfrontiers .ability-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: var(--sf-panel);
+  border: 1px solid var(--sf-border);
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.starfrontiers .score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--sf-panel-2);
+  border: 1px solid var(--sf-border);
+  border-radius: 5px;
+  padding: 6px 4px;
+}
+
+.starfrontiers .score-abbr {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--sf-accent);
+}
+
+.starfrontiers .score .score-value {
+  width: 64px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 4px 2px;
+  color: var(--sf-text);
+}
+
+.starfrontiers .score-mod {
+  font-size: 11px;
+  color: var(--sf-muted);
+  min-height: 14px;
+}
+
+/* ---- Vitals bar (Current STA / Max STA / IM) --------------------------- */
+
+.starfrontiers .vitals-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.starfrontiers .vital {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--sf-panel);
+  border: 1px solid var(--sf-accent-dim);
+  border-radius: 6px;
+  padding: 8px 6px;
+}
+
+.starfrontiers .vital-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sf-muted);
+}
+
+.starfrontiers .vital input {
+  width: 72px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.starfrontiers .vital-readonly {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--sf-accent) !important;
+}
+
+/* ---- Tabs -------------------------------------------------------------- */
 
 .starfrontiers .sheet-tabs {
-  flex: 0 0 40px;
-  border-top: 2px solid #00a8ff;
-  border-bottom: 2px solid #00a8ff;
-  background: #2a2a2a;
+  flex: 0 0 auto;
+  display: flex;
+  border-bottom: 2px solid var(--sf-accent);
+  background: var(--sf-panel);
+  margin: 0;
 }
 
 .starfrontiers .sheet-tabs .item {
-  line-height: 40px;
-  font-weight: bold;
-  color: #888;
-  border-right: 1px solid #444;
+  flex: 1;
+  text-align: center;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sf-muted);
+  border-right: 1px solid var(--sf-border);
 }
 
+.starfrontiers .sheet-tabs .item:last-child { border-right: none; }
+
 .starfrontiers .sheet-tabs .item.active {
-  color: #00a8ff;
-  text-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+  color: var(--sf-accent);
+  background: var(--sf-panel-2);
+  text-shadow: 0 0 8px rgba(0, 168, 255, 0.4);
 }
 
 .starfrontiers .sheet-body {
@@ -84,147 +248,152 @@
 .starfrontiers .tab {
   height: 100%;
   overflow-y: auto;
-  padding: 10px;
+  padding: 12px 14px;
 }
 
-.starfrontiers .abilities-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  padding: 10px;
-}
+/* ---- Item lists -------------------------------------------------------- */
 
-.starfrontiers .ability {
-  background: #2a2a2a;
-  border: 1px solid #00a8ff;
-  border-radius: 5px;
-  padding: 10px;
+.starfrontiers .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--sf-accent-dim);
+  margin-top: 14px;
+  padding-bottom: 4px;
 }
 
-.starfrontiers .ability-name {
-  text-transform: uppercase;
-  color: #00a8ff;
-  margin: 0;
-  flex: 0 0 60px;
-}
+.starfrontiers .section-header:first-child { margin-top: 0; }
 
-.starfrontiers .ability input {
-  width: 60px;
-  text-align: center;
-  background: #3a3a3a;
-  border: 1px solid #555;
-  color: #e0e0e0;
-}
-
-.starfrontiers .ability-mod {
-  color: #aaa;
-  font-size: 12px;
-  margin: 0 10px;
-}
-
-.starfrontiers .ability-roll {
-  background: #00a8ff;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+.starfrontiers .section-header .item-create {
+  color: var(--sf-accent);
   cursor: pointer;
-}
-
-.starfrontiers .ability-roll:hover {
-  background: #0088cc;
-}
-
-.starfrontiers .items-section h3 {
-  color: #00a8ff;
-  border-bottom: 2px solid #00a8ff;
-  padding-bottom: 5px;
-  margin-top: 15px;
+  font-size: 13px;
 }
 
 .starfrontiers .items-list {
   list-style: none;
-  margin: 0;
+  margin: 6px 0 0;
   padding: 0;
 }
 
 .starfrontiers .items-list .item {
-  background: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 3px;
-  margin: 5px 0;
-  padding: 5px 10px;
+  display: flex;
   align-items: center;
+  gap: 8px;
+  background: var(--sf-panel);
+  border: 1px solid var(--sf-border);
+  border-radius: 4px;
+  margin: 4px 0;
+  padding: 5px 8px;
 }
 
 .starfrontiers .items-list .item:hover {
-  background: #333;
-  border-color: #00a8ff;
+  border-color: var(--sf-accent);
 }
+
+.starfrontiers .items-list .item-head {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--sf-border);
+  border-radius: 0;
+  margin: 0;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--sf-muted);
+}
+
+.starfrontiers .items-list .item-head:hover { border-color: var(--sf-border); }
 
 .starfrontiers .items-list .item img {
   flex: 0 0 24px;
-  margin-right: 10px;
+  width: 24px;
+  height: 24px;
   border: none;
+  border-radius: 3px;
 }
+
+.starfrontiers .items-list .item-head .item-name { padding-left: 0; }
 
 .starfrontiers .items-list .item-name {
   flex: 1;
   margin: 0;
-  font-size: 14px;
-  color: #e0e0e0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sf-text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.starfrontiers .items-list .item-detail {
+  flex: 0 0 48px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--sf-muted);
 }
 
 .starfrontiers .items-list .item-damage {
-  color: #ff6b6b;
-  font-weight: bold;
-  margin-right: 10px;
+  color: var(--sf-danger);
+  font-weight: 700;
 }
 
-.starfrontiers .item-controls {
+.starfrontiers .item-controls,
+.starfrontiers .item-controls-head {
   display: flex;
-  gap: 5px;
-  flex: 0 0 auto;
+  gap: 6px;
+  flex: 0 0 72px;
+  justify-content: flex-end;
 }
 
 .starfrontiers .item-control {
-  color: #00a8ff;
+  color: var(--sf-accent);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-.starfrontiers .item-control:hover {
-  color: #0088cc;
-}
+.starfrontiers .item-control:hover { color: #fff; }
 
-.starfrontiers .editor {
-  height: 100%;
-}
+/* ---- Editor / biography ------------------------------------------------ */
+
+.starfrontiers .editor { height: 100%; min-height: 200px; }
 
 .starfrontiers .editor .editor-content {
-  background: #2a2a2a;
-  color: #e0e0e0;
+  background: var(--sf-panel);
+  color: var(--sf-text);
+  padding: 8px;
+  border-radius: 4px;
 }
+
+/* ---- Shared form controls (used by item sheets too) -------------------- */
 
 .starfrontiers input[type="text"],
 .starfrontiers input[type="number"],
 .starfrontiers select {
-  background: #3a3a3a;
-  border: 1px solid #555;
-  color: #e0e0e0;
-  padding: 5px;
-  border-radius: 3px;
+  background: var(--sf-field);
+  border: 1px solid var(--sf-border);
+  color: var(--sf-text);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.starfrontiers input[readonly] { cursor: default; }
+
+.starfrontiers input:disabled,
+.starfrontiers select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .starfrontiers input[type="text"]:focus,
 .starfrontiers input[type="number"]:focus,
 .starfrontiers select:focus {
   outline: none;
-  border-color: #00a8ff;
-  box-shadow: 0 0 5px rgba(0, 168, 255, 0.5);
+  border-color: var(--sf-accent);
+  box-shadow: 0 0 6px rgba(0, 168, 255, 0.5);
 }
 
 .starfrontiers .form-group {
@@ -235,8 +404,8 @@
 
 .starfrontiers .form-group label {
   flex: 0 0 150px;
-  font-weight: bold;
-  color: #00a8ff;
+  font-weight: 700;
+  color: var(--sf-accent);
 }
 
 .starfrontiers .form-group input,
@@ -245,9 +414,27 @@
 }
 
 .starfrontiers button.small {
-  padding: 4px 8px;
-  font-size: 12px;
-  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: auto;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  background: var(--sf-panel-2);
+  border: 1px solid var(--sf-accent-dim);
+  color: var(--sf-text);
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-/* Removed dimming for locked state to avoid visually muting the sheet when stats are locked. */
+.starfrontiers button.small:hover:not(:disabled) {
+  border-color: var(--sf-accent);
+  color: var(--sf-accent);
+}
+
+.starfrontiers button.small:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

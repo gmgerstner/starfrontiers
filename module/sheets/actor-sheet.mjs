@@ -5,7 +5,7 @@ export class StarFrontiersActorSheet extends ActorSheet {
       classes: ["starfrontiers", "sheet", "actor"],
       width: 720,
       height: 680,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "abilities" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
     });
   }
 
@@ -26,6 +26,7 @@ export class StarFrontiersActorSheet extends ActorSheet {
 
     if (actorData.type == 'npc') {
       this._prepareItems(context);
+      this._prepareCharacterData(context);
     }
 
     context.rollData = context.actor.getRollData();
@@ -50,10 +51,9 @@ export class StarFrontiersActorSheet extends ActorSheet {
             val.value = Number.isNaN(parsed) ? 45 : parsed;
           }
 
-          // Ensure modifier is an integer (no commas)
-          const rawMod = val.modifier;
-          const parsedMod = parseInt(String(rawMod).replace(/,/g, ''), 10);
-          val.modifier = Number.isNaN(parsedMod) ? 0 : parsedMod;
+          // Derive the ability modifier from the (sanitized) score so it is
+          // correct for both characters and NPCs: (score - 50) / 10, rounded down.
+          val.modifier = Math.floor((val.value - 50) / 10);
         }
 
         // Stamina has value/max fields — normalize them as integers too
@@ -211,6 +211,8 @@ export class StarFrontiersActorSheet extends ActorSheet {
 
     if (!this.isEditable) return;
 
+    html.find('.item-create').click(this._onItemCreate.bind(this));
+
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
@@ -236,8 +238,10 @@ export class StarFrontiersActorSheet extends ActorSheet {
       const rs = Number.isNaN(val) ? 0 : val;
       const im = Math.floor(rs / 10);
       // find the nearest .im-display in the same sheet section
-      const imDisplay = $input.closest('.abilities-list').find('.im-display');
+      const imDisplay = $input.closest('.ability-block').find('.im-display');
       imDisplay.val(im);
+      // keep the inline "IM" label next to the RS input in sync too
+      $input.closest('.score').find('.score-mod').text('IM ' + im);
     };
 
     // Initialize displays
@@ -334,6 +338,18 @@ export class StarFrontiersActorSheet extends ActorSheet {
     const locked = !!this.actor.getFlag('starfrontiers', 'statsLocked');
     await this.actor.setFlag('starfrontiers', 'statsLocked', !locked);
     this.render(false);
+  }
+
+  /**
+   * Create a new embedded Item of the given type on this actor.
+   */
+  async _onItemCreate(event) {
+    event.preventDefault();
+    const type = event.currentTarget.dataset.type;
+    if (!type) return;
+    const label = type.charAt(0).toUpperCase() + type.slice(1);
+    const itemData = { name: `New ${label}`, type, system: {} };
+    return this.actor.createEmbeddedDocuments('Item', [itemData]);
   }
 
   async _onAbilityRoll(event) {

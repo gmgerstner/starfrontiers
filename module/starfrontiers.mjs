@@ -11,6 +11,17 @@ Hooks.once('init', async function() {
     StarFrontiersItem
   };
 
+  // Handlebars helpers used by the sheets
+  Handlebars.registerHelper('sfSigned', function (n) {
+    const v = Number(n);
+    if (Number.isNaN(v)) return '+0';
+    return (v >= 0 ? '+' : '') + v;
+  });
+
+  Handlebars.registerHelper('eq', function (a, b) {
+    return a === b;
+  });
+
   CONFIG.Actor.documentClass = StarFrontiersActor;
   CONFIG.Item.documentClass = StarFrontiersItem;
 

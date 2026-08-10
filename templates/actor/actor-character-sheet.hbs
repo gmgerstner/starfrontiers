@@ -3,107 +3,218 @@
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"/></h1>
-      <div class="resource">
-        <label>Race: </label>
-  <input type="text" name="system.race" value="{{system.race}}" placeholder="Human" />
+
+      <div class="header-meta">
+        <div class="meta-field">
+          <label>Race</label>
+          <input list="sf-races" type="text" name="system.race" value="{{system.race}}" placeholder="Race"/>
+        </div>
+        <div class="meta-field">
+          <label>XP</label>
+          <input type="number" step="1" min="0" name="system.experience" value="{{system.experience}}" data-dtype="Number"/>
+        </div>
+        <div class="meta-field">
+          <label>Credits</label>
+          <input type="number" step="1" min="0" name="system.credits" value="{{system.credits}}" data-dtype="Number"/>
+        </div>
       </div>
-      <div class="resource">
-  <button class="roll-initial-stats small" title="Roll d100 for each ability to generate initial base scores" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}>Roll Initial Stats</button>
-  <button class="toggle-stats-lock small" title="Lock stats to prevent editing or accidental rolls" {{#unless owner}}disabled{{/unless}}>{{#if flags.starfrontiers.statsLocked}}Unlock Stats{{else}}Lock Stats{{/if}}</button>
-      </div>
-      <div class="resource">
-        <label>Current STA: </label>
-  <input class="sta-current" type="number" step="1" min="1" max="100" name="system.stamina.current" value="{{system.stamina.current}}" data-dtype="Number" title="Current Stamina (track damage). Can be lower than Max STA." />
+
+      <div class="header-actions">
+        <button type="button" class="roll-initial-stats small" title="Roll d100 for each ability to generate initial base scores" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}><i class="fas fa-dice-d10"></i> Roll Initial Stats</button>
+        <button type="button" class="toggle-stats-lock small" title="Lock stats to prevent editing or accidental rolls" {{#unless owner}}disabled{{/unless}}><i class="fas {{#if flags.starfrontiers.statsLocked}}fa-lock{{else}}fa-lock-open{{/if}}"></i> {{#if flags.starfrontiers.statsLocked}}Unlock{{else}}Lock{{/if}} Stats</button>
       </div>
     </div>
+
+    <datalist id="sf-races">
+      <option value="Human"></option>
+      <option value="Dralasite"></option>
+      <option value="Vrusk"></option>
+      <option value="Yazirian"></option>
+    </datalist>
   </header>
 
+  <section class="ability-block">
+    <h3 class="block-title">Ability Scores</h3>
+    <div class="ability-grid">
+
+      <div class="ability-pair">
+        <div class="score">
+          <span class="score-abbr">STR</span>
+          <input class="score-value" type="number" step="1" min="1" max="100" name="system.str.value" value="{{system.str.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">{{sfSigned system.str.modifier}}</span>
+        </div>
+        <div class="score">
+          <span class="score-abbr">STA</span>
+          <input class="score-value sta-max" type="number" step="1" min="1" max="100" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number" title="Maximum Stamina" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">max</span>
+        </div>
+      </div>
+
+      <div class="ability-pair">
+        <div class="score">
+          <span class="score-abbr">DEX</span>
+          <input class="score-value" type="number" step="1" min="1" max="100" name="system.dex.value" value="{{system.dex.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">{{sfSigned system.dex.modifier}}</span>
+        </div>
+        <div class="score">
+          <span class="score-abbr">RS</span>
+          <input class="score-value rs-input" type="number" step="1" min="1" max="100" name="system.rs" value="{{system.rs}}" data-dtype="Number" title="Reaction Speed. Editing RS changes IM." {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">IM {{system.im}}</span>
+        </div>
+      </div>
+
+      <div class="ability-pair">
+        <div class="score">
+          <span class="score-abbr">INT</span>
+          <input class="score-value" type="number" step="1" min="1" max="100" name="system.int.value" value="{{system.int.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">{{sfSigned system.int.modifier}}</span>
+        </div>
+        <div class="score">
+          <span class="score-abbr">LOG</span>
+          <input class="score-value" type="number" step="1" min="1" max="100" name="system.log.value" value="{{system.log.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">{{sfSigned system.log.modifier}}</span>
+        </div>
+      </div>
+
+      <div class="ability-pair">
+        <div class="score">
+          <span class="score-abbr">PER</span>
+          <input class="score-value" type="number" step="1" min="1" max="100" name="system.per.value" value="{{system.per.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">{{sfSigned system.per.modifier}}</span>
+        </div>
+        <div class="score">
+          <span class="score-abbr">LDR</span>
+          <input class="score-value" type="number" step="1" min="1" max="100" name="system.ldr.value" value="{{system.ldr.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
+          <span class="score-mod">{{sfSigned system.ldr.modifier}}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="vitals-bar">
+      <div class="vital">
+        <span class="vital-label">Current STA</span>
+        <input class="sta-current" type="number" step="1" min="0" max="100" name="system.stamina.current" value="{{system.stamina.current}}" data-dtype="Number" title="Current Stamina (track damage here)."/>
+      </div>
+      <div class="vital">
+        <span class="vital-label">Max STA</span>
+        <input class="vital-readonly" type="number" value="{{system.stamina.value}}" readonly aria-readonly="true"/>
+      </div>
+      <div class="vital">
+        <span class="vital-label">Init. Modifier</span>
+        <input class="im-display vital-readonly" type="number" value="{{system.im}}" readonly aria-readonly="true"/>
+      </div>
+    </div>
+  </section>
+
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="abilities">Abilities</a>
-    <a class="item" data-tab="items">Items</a>
-    <a class="item" data-tab="bio">Biography</a>
+    <a class="item" data-tab="skills"><i class="fas fa-graduation-cap"></i> Skills</a>
+    <a class="item" data-tab="gear"><i class="fas fa-box-open"></i> Gear</a>
+    <a class="item" data-tab="bio"><i class="fas fa-book"></i> Biography</a>
   </nav>
 
   <section class="sheet-body">
-    <div class="tab abilities" data-group="primary" data-tab="abilities">
-      <div class="abilities-list paired">
-    <div class="ability-row">
-      <label>STR</label>
-            <input type="number" step="1" min="1" max="100" name="system.str.value" value="{{system.str.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-            <label>STA</label>
-            <input class="sta-max" type="number" step="1" min="1" max="100" name="system.stamina.value" value="{{system.stamina.value}}" data-dtype="Number" title="Max Stamina (paired with STR)." {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-    </div>
-
-        <div class="ability-row">
-          <label>DEX</label>
-            <input type="number" step="1" min="1" max="100" name="system.dex.value" value="{{system.dex.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <label>RS</label>
-          <input class="rs-input" type="number" step="1" min="1" max="100" name="system.rs" value="{{system.rs}}" data-dtype="Number" title="RS (derived from DEX by default). Editing RS will change IM." {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-        </div>
-
-        <div class="ability-row">
-          <label>INT</label>
-            <input type="number" step="1" min="1" max="100" name="system.int.value" value="{{system.int.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <label>LOG</label>
-            <input type="number" step="1" min="1" max="100" name="system.log.value" value="{{system.log.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-        </div>
-
-        <div class="ability-row">
-          <label>PER</label>
-            <input type="number" step="1" min="1" max="100" name="system.per.value" value="{{system.per.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <label>LDR</label>
-            <input type="number" step="1" min="1" max="100" name="system.ldr.value" value="{{system.ldr.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-        </div>
-
-        <div class="ability-row">
-          <label>IM</label>
-          <input class="im-display" type="number" step="1" value="{{system.im}}" data-dtype="Number" readonly aria-readonly="true"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="tab items" data-group="primary" data-tab="items">
+    <div class="tab skills" data-group="primary" data-tab="skills">
       <div class="items-section">
-        <h3>Skills</h3>
+        <header class="section-header">
+          <h3>Skills</h3>
+          <a class="item-control item-create" data-type="skill" title="Add Skill"><i class="fas fa-plus"></i></a>
+        </header>
         <ol class="items-list">
+          <li class="item item-head flexrow">
+            <span class="item-name">Name</span>
+            <span class="item-detail">Level</span>
+            <span class="item-controls-head">&nbsp;</span>
+          </li>
           {{#each skills as |item id|}}
             <li class="item flexrow" data-item-id="{{item._id}}">
               <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
               <h4 class="item-name">{{item.name}}</h4>
+              <span class="item-detail">{{item.system.level}}</span>
               <div class="item-controls">
-                <a class="item-control item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
-                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <a class="item-control item-roll" title="Roll Skill"><i class="fas fa-dice-d20"></i></a>
+                <a class="item-control item-edit" title="Edit Skill"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Skill"><i class="fas fa-trash"></i></a>
               </div>
             </li>
           {{/each}}
         </ol>
+      </div>
+    </div>
 
-        <h3>Weapons</h3>
+    <div class="tab gear" data-group="primary" data-tab="gear">
+      <div class="items-section">
+        <header class="section-header">
+          <h3>Weapons</h3>
+          <a class="item-control item-create" data-type="weapon" title="Add Weapon"><i class="fas fa-plus"></i></a>
+        </header>
         <ol class="items-list">
+          <li class="item item-head flexrow">
+            <span class="item-name">Name</span>
+            <span class="item-detail">Dmg</span>
+            <span class="item-detail">Rng</span>
+            <span class="item-detail">Ammo</span>
+            <span class="item-controls-head">&nbsp;</span>
+          </li>
           {{#each weapons as |item id|}}
             <li class="item flexrow" data-item-id="{{item._id}}">
               <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
               <h4 class="item-name">{{item.name}}</h4>
-              <span class="item-damage">{{item.system.damage}}</span>
+              <span class="item-detail item-damage">{{item.system.damage}}</span>
+              <span class="item-detail">{{item.system.range}}</span>
+              <span class="item-detail">{{item.system.ammo}}</span>
               <div class="item-controls">
                 <a class="item-control item-roll" title="Roll Damage"><i class="fas fa-dice-d20"></i></a>
-                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <a class="item-control item-edit" title="Edit Weapon"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Weapon"><i class="fas fa-trash"></i></a>
               </div>
             </li>
           {{/each}}
         </ol>
 
-        <h3>Equipment</h3>
+        <header class="section-header">
+          <h3>Defenses</h3>
+          <a class="item-control item-create" data-type="armor" title="Add Armor"><i class="fas fa-plus"></i></a>
+        </header>
         <ol class="items-list">
+          <li class="item item-head flexrow">
+            <span class="item-name">Name</span>
+            <span class="item-detail">Type</span>
+            <span class="item-detail">Def</span>
+            <span class="item-controls-head">&nbsp;</span>
+          </li>
+          {{#each armor as |item id|}}
+            <li class="item flexrow" data-item-id="{{item._id}}">
+              <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
+              <h4 class="item-name">{{item.name}}</h4>
+              <span class="item-detail">{{item.system.type}}</span>
+              <span class="item-detail">{{item.system.defense}}</span>
+              <div class="item-controls">
+                <a class="item-control item-edit" title="Edit Armor"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Armor"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+          {{/each}}
+        </ol>
+
+        <header class="section-header">
+          <h3>Equipment</h3>
+          <a class="item-control item-create" data-type="equipment" title="Add Equipment"><i class="fas fa-plus"></i></a>
+        </header>
+        <ol class="items-list">
+          <li class="item item-head flexrow">
+            <span class="item-name">Name</span>
+            <span class="item-detail">Qty</span>
+            <span class="item-controls-head">&nbsp;</span>
+          </li>
           {{#each equipment as |item id|}}
             <li class="item flexrow" data-item-id="{{item._id}}">
               <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
               <h4 class="item-name">{{item.name}}</h4>
+              <span class="item-detail">{{item.system.quantity}}</span>
               <div class="item-controls">
-                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <a class="item-control item-edit" title="Edit Equipment"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Equipment"><i class="fas fa-trash"></i></a>
               </div>
             </li>
           {{/each}}
