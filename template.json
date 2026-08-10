@@ -46,12 +46,15 @@
       "damage": "1d10",
       "range": 50,
       "ammo": 20,
-      "weaponType": "ranged"
+      "ammoMax": 20,
+      "weaponType": "ranged",
+      "skillLevel": 0
     },
     "armor": {
       "templates": ["base"],
       "defense": 0,
-      "type": "light"
+      "type": "light",
+      "equipped": false
     },
     "equipment": {
       "templates": ["base"]

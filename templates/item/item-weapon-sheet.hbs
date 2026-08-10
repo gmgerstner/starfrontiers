@@ -22,12 +22,16 @@
         <input type="text" name="system.damage" value="{{system.damage}}" placeholder="1d10"/>
       </div>
       <div class="form-group">
-        <label>Range:</label>
-        <input type="number" name="system.range" value="{{system.range}}" data-dtype="Number"/>
+        <label>Range (m):</label>
+        <input type="number" name="system.range" value="{{system.range}}" data-dtype="Number" title="Short/normal range in metres. Range bands (Point Blank/Short/Medium/Long/Extreme) are multiples of this and adjust to-hit."/>
       </div>
       <div class="form-group">
         <label>Ammo:</label>
         <input type="number" name="system.ammo" value="{{system.ammo}}" data-dtype="Number"/>
+      </div>
+      <div class="form-group">
+        <label>Ammo Max:</label>
+        <input type="number" name="system.ammoMax" value="{{system.ammoMax}}" data-dtype="Number" title="Set 0 for a weapon that does not track ammo (e.g. melee)."/>
       </div>
       <div class="form-group">
         <label>Type:</label>
@@ -35,6 +39,10 @@
           <option value="ranged" {{#if (eq system.weaponType 'ranged')}}selected{{/if}}>Ranged</option>
           <option value="melee" {{#if (eq system.weaponType 'melee')}}selected{{/if}}>Melee</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label>Weapon Skill Lvl:</label>
+        <input type="number" step="1" min="0" name="system.skillLevel" value="{{system.skillLevel}}" data-dtype="Number" title="Adds +10% to-hit per level. Ranged attacks use DEX, melee use STR."/>
       </div>
       <div class="form-group">
         <label>Quantity:</label>

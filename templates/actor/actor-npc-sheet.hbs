@@ -93,6 +93,10 @@
         <span class="vital-label">Init. Modifier</span>
         <input class="im-display vital-readonly" type="number" value="{{system.im}}" readonly aria-readonly="true"/>
       </div>
+      <div class="vital">
+        <span class="vital-label">Defense</span>
+        <input class="vital-readonly" type="number" value="{{totalDefense}}" readonly aria-readonly="true" title="Total defense from equipped armor"/>
+      </div>
     </div>
   </section>
 
@@ -122,11 +126,37 @@
               <h4 class="item-name">{{item.name}}</h4>
               <span class="item-detail item-damage">{{item.system.damage}}</span>
               <span class="item-detail">{{item.system.range}}</span>
-              <span class="item-detail">{{item.system.ammo}}</span>
+              <span class="item-detail">{{#if item.system.ammoMax}}{{item.system.ammo}}/{{item.system.ammoMax}}{{else}}&mdash;{{/if}}</span>
               <div class="item-controls">
-                <a class="item-control item-roll" title="Roll Damage"><i class="fas fa-dice-d20"></i></a>
+                <a class="item-control item-roll" title="Attack (to-hit + damage)"><i class="fas fa-crosshairs"></i></a>
                 <a class="item-control item-edit" title="Edit Weapon"><i class="fas fa-edit"></i></a>
                 <a class="item-control item-delete" title="Delete Weapon"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+          {{/each}}
+        </ol>
+
+        <header class="section-header">
+          <h3>Defenses</h3>
+          <a class="item-control item-create" data-type="armor" title="Add Armor"><i class="fas fa-plus"></i></a>
+        </header>
+        <ol class="items-list">
+          <li class="item item-head flexrow">
+            <span class="item-name">Name</span>
+            <span class="item-detail">Type</span>
+            <span class="item-detail">Def</span>
+            <span class="item-controls-head">&nbsp;</span>
+          </li>
+          {{#each armor as |item id|}}
+            <li class="item flexrow {{#if item.system.equipped}}equipped{{/if}}" data-item-id="{{item._id}}">
+              <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
+              <h4 class="item-name">{{item.name}}</h4>
+              <span class="item-detail">{{item.system.type}}</span>
+              <span class="item-detail">{{item.system.defense}}</span>
+              <div class="item-controls">
+                <a class="item-control armor-equip-toggle {{#if item.system.equipped}}active{{/if}}" title="Toggle Equipped"><i class="fas fa-shield-alt"></i></a>
+                <a class="item-control item-edit" title="Edit Armor"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Armor"><i class="fas fa-trash"></i></a>
               </div>
             </li>
           {{/each}}

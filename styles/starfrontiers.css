@@ -524,3 +524,96 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* ---- Equipped armor row ------------------------------------------------ */
+
+.starfrontiers .items-list .item.equipped {
+  border-color: var(--sf-accent);
+  box-shadow: inset 3px 0 0 var(--sf-accent);
+}
+
+.starfrontiers .armor-equip-toggle { color: var(--sf-muted); }
+.starfrontiers .armor-equip-toggle.active { color: var(--sf-accent); }
+
+/* ==========================================================================
+   Weapon attack chat card (not scoped under .starfrontiers — chat log lives
+   outside the sheet, so these classes are namespaced with sf- instead).
+   ========================================================================== */
+
+.sf-attack-card {
+  border: 1px solid #3a4250;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: rgba(31, 37, 48, 0.35);
+}
+
+.sf-attack-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.sf-attack-header img {
+  border: none;
+  border-radius: 4px;
+  flex: 0 0 28px;
+}
+
+.sf-weapon-name {
+  flex: 1;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.sf-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.sf-badge.sf-hit { background: #1f8a4c; }
+.sf-badge.sf-miss { background: #9b3030; }
+
+.sf-attack-line { font-size: 13px; margin: 2px 0; }
+.sf-attack-line .sf-formula { color: #8a95a5; font-size: 11px; }
+.sf-attack-line.sf-ammo { color: #8a95a5; font-size: 12px; }
+
+.sf-targets {
+  margin-top: 6px;
+  border-top: 1px solid #3a4250;
+  padding-top: 6px;
+}
+
+.sf-target-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin: 3px 0;
+}
+
+.sf-target-name { flex: 1; font-weight: 600; }
+.sf-target-def, .sf-target-net { color: #8a95a5; }
+.sf-range { color: #ffcf5c; font-size: 11px; white-space: nowrap; }
+.sf-applied { color: #ff6b6b; font-weight: 700; }
+.sf-miss-tag { color: #8a95a5; font-style: italic; }
+.sf-target-row .sf-badge { padding: 1px 6px; font-size: 10px; }
+
+.sf-apply-damage {
+  width: auto;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background: #9b3030;
+  border: 1px solid #c04a4a;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sf-apply-damage:hover { background: #b83c3c; }

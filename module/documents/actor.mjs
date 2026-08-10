@@ -82,6 +82,31 @@ export class StarFrontiersActor extends Actor {
     // NPC specific calculations
   }
 
+  /**
+   * Total defense value from all currently equipped armor items.
+   * @returns {number}
+   */
+  get totalDefense() {
+    return this.items
+      .filter(i => i.type === 'armor' && i.system?.equipped)
+      .reduce((sum, i) => sum + (Number(i.system?.defense) || 0), 0);
+  }
+
+  /**
+   * Apply damage (or, if negative, healing) to current Stamina.
+   * @param {number} amount  Positive reduces STA; negative heals.
+   * @returns {Promise<number>} The amount actually applied.
+   */
+  async applyDamage(amount) {
+    const sys = this.system;
+    const max = Number(sys?.stamina?.value) || 0;
+    const current = (sys?.stamina?.current === undefined || sys?.stamina?.current === null)
+      ? max : Number(sys.stamina.current);
+    const next = Math.min(max, Math.max(0, current - Math.round(Number(amount) || 0)));
+    await this.update({ 'system.stamina.current': next });
+    return current - next;
+  }
+
   async rollAbilityCheck(abilityId) {
     const ability = this.system[abilityId];
     // Roll under the effective score (base + racial modifier).

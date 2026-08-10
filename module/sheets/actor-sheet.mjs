@@ -218,6 +218,10 @@ export class StarFrontiersActorSheet extends ActorSheet {
     context.equipment = equipment;
     context.skills = skills;
     context.race = race;
+
+    // Total defense from equipped armor (for the vitals display).
+    context.totalDefense = armor.reduce(
+      (sum, i) => sum + (i.system && i.system.equipped ? (Number(i.system.defense) || 0) : 0), 0);
   }
 
   /**
@@ -243,6 +247,14 @@ export class StarFrontiersActorSheet extends ActorSheet {
     if (!this.isEditable) return;
 
     html.find('.item-create').click(this._onItemCreate.bind(this));
+
+    html.find('.armor-equip-toggle').click(async ev => {
+      ev.preventDefault();
+      const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      if (!item) return;
+      await item.update({ 'system.equipped': !item.system.equipped });
+    });
 
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
