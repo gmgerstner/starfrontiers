@@ -1,7 +1,24 @@
 {
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "weapon": "Weapon",
+      "armor": "Armor",
+      "equipment": "Equipment",
+      "skill": "Skill",
+      "race": "Race"
+    }
+  },
   "STARFRONTIERS": {
     "SheetClassActor": "Star Frontiers Actor Sheet",
     "SheetClassItem": "Star Frontiers Item Sheet",
+
+    "ItemTypeRace": "Race",
+    "SpecialAbilities": "Special Abilities",
+    "Movement": "Movement",
     
     "AbilitySTR": "Strength",
     "AbilityDEX": "Dexterity", 

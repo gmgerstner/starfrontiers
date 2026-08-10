@@ -1,0 +1,7 @@
+# Foundry LevelDB pack lock/log artifacts (regenerated at runtime)
+packs/**/LOCK
+packs/**/LOG
+packs/**/LOG.old
+
+# Node
+node_modules/

@@ -2,7 +2,7 @@
   "id": "starfrontiers",
   "title": "Star Frontiers",
   "description": "A game system for playing Star Frontiers in Foundry VTT",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -18,7 +18,26 @@
   "styles": [
     "styles/starfrontiers.css"
   ],
-  "packs": [],
+  "packs": [
+    {
+      "name": "races",
+      "label": "Races",
+      "path": "packs/races",
+      "type": "Item",
+      "system": "starfrontiers",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Star Frontiers",
+      "sorting": "m",
+      "packs": ["races"]
+    }
+  ],
   "languages": [
     {
       "lang": "en",

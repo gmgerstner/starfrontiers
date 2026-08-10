@@ -1,0 +1,60 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Race Name"/></h1>
+    </div>
+  </header>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="abilities">Special Abilities</a>
+    <a class="item" data-tab="attributes">Attributes</a>
+  </nav>
+
+  <section class="sheet-body">
+    <div class="tab" data-group="primary" data-tab="description">
+      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="abilities">
+      {{editor system.specialAbilities target="system.specialAbilities" button=true owner=owner editable=editable}}
+    </div>
+
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      <div class="form-group">
+        <label>Movement:</label>
+        <input type="text" name="system.movement" value="{{system.movement}}" placeholder="10/30 m per turn"/>
+      </div>
+
+      <h3 class="block-title">Ability Score Modifiers</h3>
+      <p class="hint">Applied to a character's base scores when this race is equipped. Use positive or negative values (e.g. +10, -5).</p>
+      <div class="ability-mods-grid">
+        <div class="mod-field">
+          <label>STR</label>
+          <input type="number" step="1" name="system.abilityMods.str" value="{{system.abilityMods.str}}" data-dtype="Number"/>
+        </div>
+        <div class="mod-field">
+          <label>DEX</label>
+          <input type="number" step="1" name="system.abilityMods.dex" value="{{system.abilityMods.dex}}" data-dtype="Number"/>
+        </div>
+        <div class="mod-field">
+          <label>INT</label>
+          <input type="number" step="1" name="system.abilityMods.int" value="{{system.abilityMods.int}}" data-dtype="Number"/>
+        </div>
+        <div class="mod-field">
+          <label>PER</label>
+          <input type="number" step="1" name="system.abilityMods.per" value="{{system.abilityMods.per}}" data-dtype="Number"/>
+        </div>
+        <div class="mod-field">
+          <label>LDR</label>
+          <input type="number" step="1" name="system.abilityMods.ldr" value="{{system.abilityMods.ldr}}" data-dtype="Number"/>
+        </div>
+        <div class="mod-field">
+          <label>LOG</label>
+          <input type="number" step="1" name="system.abilityMods.log" value="{{system.abilityMods.log}}" data-dtype="Number"/>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

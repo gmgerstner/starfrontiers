@@ -38,6 +38,9 @@ export class StarFrontiersActorSheet extends ActorSheet {
     // Ensure numeric ability/stamina values are integers and default blank abilities to 45
     const sys = context.system || {};
 
+    // Racial ability-score modifiers from the equipped race (set by _prepareItems).
+    const abilityMods = (context.race && context.race.system && context.race.system.abilityMods) || {};
+
     for (const [key, val] of Object.entries(sys)) {
       if (val && typeof val === 'object') {
         // Abilities are objects with a value and modifier
@@ -51,9 +54,12 @@ export class StarFrontiersActorSheet extends ActorSheet {
             val.value = Number.isNaN(parsed) ? 45 : parsed;
           }
 
-          // Derive the ability modifier from the (sanitized) score so it is
-          // correct for both characters and NPCs: (score - 50) / 10, rounded down.
-          val.modifier = Math.floor((val.value - 50) / 10);
+          // Apply the racial modifier to get the effective total, then derive the
+          // ability modifier from that total: (total - 50) / 10, rounded down.
+          const racial = Number(abilityMods[key]) || 0;
+          val.racial = racial;
+          val.total = Math.min(100, Math.max(1, val.value + racial));
+          val.modifier = Math.floor((val.total - 50) / 10);
         }
 
         // Stamina has value/max fields — normalize them as integers too
@@ -89,7 +95,9 @@ export class StarFrontiersActorSheet extends ActorSheet {
       // Compute derived stats for display only
       // RS is editable: use existing system.rs when present (sanitized), otherwise default to DEX
       try {
-        const dex = (sys.dex && typeof sys.dex.value !== 'undefined') ? Number(sys.dex.value) : 0;
+        // Default RS from the effective DEX total so a racial DEX modifier flows into RS/IM.
+        const dex = (sys.dex && typeof sys.dex.total !== 'undefined') ? Number(sys.dex.total)
+          : (sys.dex && typeof sys.dex.value !== 'undefined') ? Number(sys.dex.value) : 0;
         let rsVal = 0;
         if (typeof sys.rs !== 'undefined' && sys.rs !== null && sys.rs !== '') {
           const parsed = parseInt(String(sys.rs).replace(/,/g, ''), 10);
@@ -183,6 +191,7 @@ export class StarFrontiersActorSheet extends ActorSheet {
     const armor = [];
     const equipment = [];
     const skills = [];
+    let race = null;
 
     for (let i of context.items) {
       i.img = i.img || Item.DEFAULT_ICON;
@@ -198,12 +207,34 @@ export class StarFrontiersActorSheet extends ActorSheet {
       else if (i.type === 'skill') {
         skills.push(i);
       }
+      else if (i.type === 'race') {
+        // A character has a single race; keep the first if duplicates exist.
+        if (!race) race = i;
+      }
     }
 
     context.weapons = weapons;
     context.armor = armor;
     context.equipment = equipment;
     context.skills = skills;
+    context.race = race;
+  }
+
+  /**
+   * Enforce a single Race item per actor (dnd5e-style): dropping a new race
+   * replaces any existing one, and the actor's system.race text is kept in sync.
+   */
+  async _onDropItemCreate(itemData, event) {
+    const incoming = Array.isArray(itemData) ? itemData : [itemData];
+    const droppedRace = [...incoming].reverse().find(d => d.type === 'race');
+
+    if (droppedRace) {
+      const existing = this.actor.items.filter(i => i.type === 'race').map(i => i.id);
+      if (existing.length) await this.actor.deleteEmbeddedDocuments('Item', existing);
+      await this.actor.update({ 'system.race': droppedRace.name });
+    }
+
+    return super._onDropItemCreate(itemData, event);
   }
 
   activateListeners(html) {
@@ -219,10 +250,13 @@ export class StarFrontiersActorSheet extends ActorSheet {
       item.sheet.render(true);
     });
 
-    html.find('.item-delete').click(ev => {
+    html.find('.item-delete').click(async ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      item.delete();
+      if (!item) return;
+      // Removing the race also clears the synced race name.
+      if (item.type === 'race') await this.actor.update({ 'system.race': '' });
+      await item.delete();
       li.slideUp(200, () => this.render(false));
     });
 

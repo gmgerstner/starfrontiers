@@ -1,0 +1,12 @@
+{
+  "name": "starfrontiers",
+  "private": true,
+  "type": "module",
+  "description": "Build tooling for the Star Frontiers Foundry VTT system.",
+  "scripts": {
+    "build:packs": "node scripts/build-packs.mjs"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.0"
+  }
+}

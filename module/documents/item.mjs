@@ -39,7 +39,9 @@ export class StarFrontiersItem extends Item {
 
     // Skill check
     if (item.type === 'skill') {
-      const abilityValue = this.actor.system[item.system.ability]?.value || 50;
+      const ability = this.actor.system[item.system.ability];
+      // Use the effective ability total (base + racial modifier) as the base target.
+      const abilityValue = ability?.total ?? ability?.value ?? 50;
       const skillBonus = item.system.level * 10;
       const targetNumber = abilityValue + skillBonus;
 

@@ -1,0 +1,27 @@
+{
+  "_id": "sfRaceYazirian01",
+  "name": "Yazirian",
+  "type": "race",
+  "img": "icons/svg/wing.svg",
+  "system": {
+    "description": "<p>Yazirians are tall, lean, ape-like beings averaging about 2 meters in height but only 50 kilograms in mass, thanks to their light build. Folds of skin (patagia) stretch between their arms and legs, letting them glide. Proud and clan-oriented, Yazirians choose a life enemy or a personal goal early in life and pursue it fiercely.</p>",
+    "specialAbilities": "<p><strong>Battle Rage:</strong> A Yazirian may work itself into a fighting rage, gaining +10 to hit and +2 to damage in melee combat. Once enraged it must continue attacking until the battle ends or the target is defeated.</p><p><strong>Night Vision:</strong> Yazirians see well in near-total darkness.</p><p><strong>Gliding:</strong> Using the skin flaps between their limbs, Yazirians can glide downward across open distances rather than fall.</p>",
+    "movement": "10 walk / 30 run (m per turn); glide",
+    "abilityMods": {
+      "str": -5,
+      "dex": 10,
+      "int": 0,
+      "per": 5,
+      "ldr": 0,
+      "log": -10
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 400000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sfRaceYazirian01"
+}

@@ -1,0 +1,27 @@
+{
+  "_id": "sfRaceDralasite1",
+  "name": "Dralasite",
+  "type": "race",
+  "img": "icons/svg/regen.svg",
+  "system": {
+    "description": "<p>Dralasites are short, rubbery, amoeba-like beings who average about 1 meter in height and 50 kilograms in mass. They have no fixed shape and no eyes, sensing their surroundings through their skin. Deliberate and philosophical by nature, Dralasites are famous for their dry (and often baffling) sense of humor.</p>",
+    "specialAbilities": "<p><strong>Elasticity:</strong> A Dralasite can slowly reshape its body, forming from one to four arms and two to four legs. Only one such change can be made at a time and each takes a full turn to complete.</p><p><strong>Regeneration:</strong> A Dralasite can regrow a lost limb over roughly two weeks.</p><p><strong>Lie Detection:</strong> By concentrating on a subject, a Dralasite has a chance to sense whether a statement it hears is a deliberate lie.</p>",
+    "movement": "10 walk / 30 run (m per turn)",
+    "abilityMods": {
+      "str": 10,
+      "dex": -10,
+      "int": 0,
+      "per": -5,
+      "ldr": 0,
+      "log": 5
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 200000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sfRaceDralasite1"
+}

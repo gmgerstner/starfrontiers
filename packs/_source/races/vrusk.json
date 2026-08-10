@@ -1,0 +1,27 @@
+{
+  "_id": "sfRaceVrusk00001",
+  "name": "Vrusk",
+  "type": "race",
+  "img": "icons/svg/pawprint.svg",
+  "system": {
+    "description": "<p>Vrusk are insectoid beings with a hard carapace, two arms ending in five-fingered hands, and eight legs that let them move quickly and surely. They average about 1.5 meters long and 90 kilograms in mass. Highly social and business-minded, Vrusk think in terms of organizations and are most comfortable working within a well-defined group.</p>",
+    "specialAbilities": "<p><strong>Ambidexterity:</strong> A Vrusk suffers no penalty for using either hand and can fight or work with both hands equally well.</p><p><strong>Comprehension:</strong> By studying a group or organization, a Vrusk has a chance to correctly analyze its purpose, structure, and how its members are likely to react.</p>",
+    "movement": "10 walk / 30 run (m per turn)",
+    "abilityMods": {
+      "str": -10,
+      "dex": 10,
+      "int": 5,
+      "per": 0,
+      "ldr": -5,
+      "log": 0
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 300000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sfRaceVrusk00001"
+}

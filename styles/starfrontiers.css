@@ -95,6 +95,44 @@
   text-align: center;
 }
 
+.starfrontiers .race-field { flex: 1 1 100%; }
+
+.starfrontiers .race-slot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--sf-panel-2);
+  border: 1px solid var(--sf-accent-dim);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.starfrontiers .race-slot img {
+  border: none;
+  border-radius: 3px;
+  flex: 0 0 22px;
+}
+
+.starfrontiers .race-slot .race-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sf-text);
+}
+
+.starfrontiers .race-slot .item-control { font-size: 12px; }
+
+.starfrontiers .race-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--sf-muted);
+  border: 1px dashed var(--sf-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
 .starfrontiers .header-actions {
   display: flex;
   flex-wrap: wrap;
@@ -164,9 +202,57 @@
 }
 
 .starfrontiers .score-mod {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 11px;
   color: var(--sf-muted);
-  min-height: 14px;
+  min-height: 16px;
+}
+
+.starfrontiers .racial-badge {
+  font-weight: 700;
+  color: #ffcf5c;
+}
+
+.starfrontiers .score-total {
+  font-weight: 700;
+  color: var(--sf-accent);
+}
+
+.starfrontiers .ability-mods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.starfrontiers .mod-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: var(--sf-panel);
+  border: 1px solid var(--sf-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.starfrontiers .mod-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sf-accent);
+}
+
+.starfrontiers .mod-field input {
+  width: 56px;
+  text-align: center;
+}
+
+.starfrontiers .hint {
+  font-size: 11px;
+  color: var(--sf-muted);
+  margin: 2px 0 6px;
 }
 
 /* ---- Vitals bar (Current STA / Max STA / IM) --------------------------- */

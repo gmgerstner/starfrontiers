@@ -1,0 +1,27 @@
+{
+  "_id": "sfRaceHuman00001",
+  "name": "Human",
+  "type": "race",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "description": "<p>Humans are the most numerous and widespread of the Frontier's four core races. Physically unremarkable compared to their neighbors, they make up for it with adaptability, ambition, and a knack for getting along (or not) with almost anyone. Average height is about 1.8 meters and average mass about 80 kilograms, though individuals vary widely.</p>",
+    "specialAbilities": "<p><strong>Adaptable:</strong> Humans have no innate racial powers like the other core races. Instead they are prized for their versatility and drive, learning skills across every discipline with equal ease.</p><p><em>Optional (referee's discretion):</em> Once per game session a Human may add +10 to a single ability or skill check after seeing the result.</p>",
+    "movement": "10 walk / 30 run (m per turn)",
+    "abilityMods": {
+      "str": 0,
+      "dex": 0,
+      "int": 0,
+      "per": 0,
+      "ldr": 0,
+      "log": 0
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sfRaceHuman00001"
+}

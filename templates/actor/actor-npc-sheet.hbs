@@ -30,7 +30,7 @@
         <div class="score">
           <span class="score-abbr">STR</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.str.value" value="{{system.str.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.str.modifier}}</span>
+          <span class="score-mod">{{#if system.str.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.str.racial}}</span> <span class="score-total" title="Effective score">{{system.str.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">STA</span>
@@ -43,7 +43,7 @@
         <div class="score">
           <span class="score-abbr">DEX</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.dex.value" value="{{system.dex.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.dex.modifier}}</span>
+          <span class="score-mod">{{#if system.dex.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.dex.racial}}</span> <span class="score-total" title="Effective score">{{system.dex.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">RS</span>
@@ -56,12 +56,12 @@
         <div class="score">
           <span class="score-abbr">INT</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.int.value" value="{{system.int.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.int.modifier}}</span>
+          <span class="score-mod">{{#if system.int.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.int.racial}}</span> <span class="score-total" title="Effective score">{{system.int.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">LOG</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.log.value" value="{{system.log.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.log.modifier}}</span>
+          <span class="score-mod">{{#if system.log.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.log.racial}}</span> <span class="score-total" title="Effective score">{{system.log.total}}</span>{{/if}}</span>
         </div>
       </div>
 
@@ -69,12 +69,12 @@
         <div class="score">
           <span class="score-abbr">PER</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.per.value" value="{{system.per.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.per.modifier}}</span>
+          <span class="score-mod">{{#if system.per.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.per.racial}}</span> <span class="score-total" title="Effective score">{{system.per.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">LDR</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.ldr.value" value="{{system.ldr.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.ldr.modifier}}</span>
+          <span class="score-mod">{{#if system.ldr.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.ldr.racial}}</span> <span class="score-total" title="Effective score">{{system.ldr.total}}</span>{{/if}}</span>
         </div>
       </div>
 

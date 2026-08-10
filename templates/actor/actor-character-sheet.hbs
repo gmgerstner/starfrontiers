@@ -5,9 +5,18 @@
       <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Character Name"/></h1>
 
       <div class="header-meta">
-        <div class="meta-field">
+        <div class="meta-field race-field">
           <label>Race</label>
-          <input list="sf-races" type="text" name="system.race" value="{{system.race}}" placeholder="Race"/>
+          {{#if race}}
+            <div class="race-slot item" data-item-id="{{race._id}}">
+              <img src="{{race.img}}" title="{{race.name}}" width="22" height="22"/>
+              <span class="race-name">{{race.name}}</span>
+              <a class="item-control item-edit" title="Edit Race"><i class="fas fa-edit"></i></a>
+              <a class="item-control item-delete" title="Remove Race"><i class="fas fa-trash"></i></a>
+            </div>
+          {{else}}
+            <span class="race-empty" title="Drag a Race item onto the sheet"><i class="fas fa-hand-pointer"></i> Drag a race here</span>
+          {{/if}}
         </div>
         <div class="meta-field">
           <label>XP</label>
@@ -24,13 +33,6 @@
         <button type="button" class="toggle-stats-lock small" title="Lock stats to prevent editing or accidental rolls" {{#unless owner}}disabled{{/unless}}><i class="fas {{#if flags.starfrontiers.statsLocked}}fa-lock{{else}}fa-lock-open{{/if}}"></i> {{#if flags.starfrontiers.statsLocked}}Unlock{{else}}Lock{{/if}} Stats</button>
       </div>
     </div>
-
-    <datalist id="sf-races">
-      <option value="Human"></option>
-      <option value="Dralasite"></option>
-      <option value="Vrusk"></option>
-      <option value="Yazirian"></option>
-    </datalist>
   </header>
 
   <section class="ability-block">
@@ -41,7 +43,7 @@
         <div class="score">
           <span class="score-abbr">STR</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.str.value" value="{{system.str.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.str.modifier}}</span>
+          <span class="score-mod">{{#if system.str.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.str.racial}}</span> <span class="score-total" title="Effective score">{{system.str.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">STA</span>
@@ -54,7 +56,7 @@
         <div class="score">
           <span class="score-abbr">DEX</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.dex.value" value="{{system.dex.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.dex.modifier}}</span>
+          <span class="score-mod">{{#if system.dex.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.dex.racial}}</span> <span class="score-total" title="Effective score">{{system.dex.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">RS</span>
@@ -67,12 +69,12 @@
         <div class="score">
           <span class="score-abbr">INT</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.int.value" value="{{system.int.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.int.modifier}}</span>
+          <span class="score-mod">{{#if system.int.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.int.racial}}</span> <span class="score-total" title="Effective score">{{system.int.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">LOG</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.log.value" value="{{system.log.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.log.modifier}}</span>
+          <span class="score-mod">{{#if system.log.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.log.racial}}</span> <span class="score-total" title="Effective score">{{system.log.total}}</span>{{/if}}</span>
         </div>
       </div>
 
@@ -80,12 +82,12 @@
         <div class="score">
           <span class="score-abbr">PER</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.per.value" value="{{system.per.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.per.modifier}}</span>
+          <span class="score-mod">{{#if system.per.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.per.racial}}</span> <span class="score-total" title="Effective score">{{system.per.total}}</span>{{/if}}</span>
         </div>
         <div class="score">
           <span class="score-abbr">LDR</span>
           <input class="score-value" type="number" step="1" min="1" max="100" name="system.ldr.value" value="{{system.ldr.value}}" data-dtype="Number" {{#if flags.starfrontiers.statsLocked}}disabled{{/if}}/>
-          <span class="score-mod">{{sfSigned system.ldr.modifier}}</span>
+          <span class="score-mod">{{#if system.ldr.racial}}<span class="racial-badge" title="Racial modifier">{{sfSigned system.ldr.racial}}</span> <span class="score-total" title="Effective score">{{system.ldr.total}}</span>{{/if}}</span>
         </div>
       </div>
 
