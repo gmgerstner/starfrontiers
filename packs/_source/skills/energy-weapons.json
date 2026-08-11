@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillEnergy001",
+  "_key": "!items!sfSkillEnergy001",
+  "name": "Energy Weapons",
+  "type": "skill",
+  "img": "icons/svg/lightning.svg",
+  "system": {
+    "level": 1,
+    "ability": "dex",
+    "psa": "spacefaring",
+    "description": "<p>Skill in firing energy-type ship weapons — laser, electron, and proton batteries and disruptor cannons. (Requires Beam Weapons.)</p>"
+  },
+  "effects": [],
+  "folder": "sfFldrSpacefar01",
+  "sort": 1800000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

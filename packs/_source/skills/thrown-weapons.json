@@ -11,7 +11,7 @@
     "description": "<p>Skill throwing grenades and other thrown weapons accurately.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrMilitary01",
   "sort": 500000,
   "ownership": {
     "default": 0

@@ -11,7 +11,7 @@
     "description": "<p>Skill with gyrojet weapons — jetguns and automatic rifles that fire tiny rocket-propelled slugs.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrMilitary01",
   "sort": 200000,
   "ownership": {
     "default": 0

@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillAstrog001",
+  "_key": "!items!sfSkillAstrog001",
+  "name": "Astrogation",
+  "type": "skill",
+  "img": "icons/svg/sun.svg",
+  "system": {
+    "level": 1,
+    "ability": "log",
+    "psa": "spacefaring",
+    "description": "<p>Skill in plotting interplanetary courses and calculating interstellar jump routes. (Requires Computer skill.)</p>"
+  },
+  "effects": [],
+  "folder": "sfFldrSpacefar01",
+  "sort": 1500000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

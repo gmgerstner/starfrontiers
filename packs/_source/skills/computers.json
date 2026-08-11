@@ -11,7 +11,7 @@
     "description": "<p>Operate, access, and manipulate computers, and bypass their security.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrTechnlgy01",
   "sort": 900000,
   "ownership": {
     "default": 0

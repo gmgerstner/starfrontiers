@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillMartArt01",
+  "_key": "!items!sfSkillMartArt01",
+  "name": "Martial Arts",
+  "type": "skill",
+  "img": "icons/svg/aura.svg",
+  "system": {
+    "level": 1,
+    "ability": "str",
+    "psa": "military",
+    "description": "<p>Skill in unarmed and hand-to-hand combat. A trained character strikes more accurately and inflicts greater damage with punches, kicks, and holds than an untrained brawler.</p>"
+  },
+  "effects": [],
+  "folder": "sfFldrMilitary01",
+  "sort": 350000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

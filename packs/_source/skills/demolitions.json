@@ -11,7 +11,7 @@
     "description": "<p>Setting, placing, and defusing explosive charges, and estimating their effects.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrMilitary01",
   "sort": 600000,
   "ownership": {
     "default": 0

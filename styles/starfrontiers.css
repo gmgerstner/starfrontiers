@@ -27,21 +27,24 @@
 /* ---- Header ------------------------------------------------------------- */
 
 .starfrontiers .sheet-header {
+  /* Pin to content height: Foundry core's `.flexcol > * { flex: 1 }` would
+     otherwise stretch the header to fill a third of the sheet. */
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 8px;
   background: linear-gradient(180deg, #232a36 0%, #1b212b 100%);
   border-bottom: 2px solid var(--sf-accent);
-  padding: 5px 10px;
+  padding: 3px 10px;
 }
 
 .starfrontiers .sheet-header .profile-img {
-  flex: 0 0 44px;
-  width: 44px;
-  height: 44px;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
   object-fit: cover;
   border: 1px solid var(--sf-accent);
-  border-radius: 5px;
+  border-radius: 4px;
   background: #000;
 }
 

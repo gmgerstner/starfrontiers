@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillPilot0001",
+  "_key": "!items!sfSkillPilot0001",
+  "name": "Piloting",
+  "type": "skill",
+  "img": "icons/svg/direction.svg",
+  "system": {
+    "level": 1,
+    "ability": "dex",
+    "psa": "spacefaring",
+    "description": "<p>Skill in piloting spaceships — maneuvering in combat, docking, and atmospheric flight. (Requires Technician and Computer skills to learn.)</p>"
+  },
+  "effects": [],
+  "folder": "sfFldrSpacefar01",
+  "sort": 1400000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

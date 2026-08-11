@@ -11,7 +11,7 @@
     "description": "<p>Skill with projectile weapons — needlers, rafflurs, automatic pistols, and machine guns firing solid ammunition.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrMilitary01",
   "sort": 300000,
   "ownership": {
     "default": 0

@@ -1,0 +1,11 @@
+{
+  "_id": "sfFldrTechnlgy01",
+  "_key": "!folders!sfFldrTechnlgy01",
+  "name": "Technological",
+  "type": "Item",
+  "sorting": "a",
+  "folder": null,
+  "color": "#2f6a8a",
+  "sort": 200000,
+  "flags": {}
+}

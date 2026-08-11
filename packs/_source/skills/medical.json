@@ -11,7 +11,7 @@
     "description": "<p>Treat wounds, diseases, infections, and poisons using medkits and equipment.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrBiosocial1",
   "sort": 1000000,
   "ownership": {
     "default": 0

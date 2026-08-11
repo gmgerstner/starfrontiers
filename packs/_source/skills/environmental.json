@@ -11,7 +11,7 @@
     "description": "<p>Survival, ecology, and the analysis of planetary environments and lifeforms.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrBiosocial1",
   "sort": 1100000,
   "ownership": {
     "default": 0

@@ -1,0 +1,11 @@
+{
+  "_id": "sfFldrMilitary01",
+  "_key": "!folders!sfFldrMilitary01",
+  "name": "Military",
+  "type": "Item",
+  "sorting": "a",
+  "folder": null,
+  "color": "#8a2f2f",
+  "sort": 100000,
+  "flags": {}
+}

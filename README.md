@@ -8,7 +8,7 @@ A complete game system implementation for playing Star Frontiers in Foundry Virt
 - **Ability Scores**: The six tracked abilities (STR, DEX, INT, PER, LDR, LOG) plus paired STA and RS. Effective scores drive every roll; RS derives IM, and STR/DEX drive Max STA.
 - **Races (drag & drop)**: Race is a first-class item type, à la dnd5e. Drag a race onto a character to fill its race slot (one race per character, auto-replacing). Ships with a **Races compendium** preloaded with the four core races (Human, Dralasite, Vrusk, Yazirian) including lore and special abilities.
 - **Racial Ability Modifiers**: Each race can modify ability scores. The modifier changes the **effective** score, so it feeds ability checks, skill checks, RS/IM, and Max STA. Modified abilities show a badge and effective total on the sheet.
-- **Skills (PSA)**: Skills carry a Primary Skill Area (Military / Technological / Biosocial) and are grouped by PSA on the character sheet. Ships with a **Skills compendium** of the core Star Frontiers skills to drag onto characters. Weapons can link to a skill by name so their to-hit uses the character's owned skill level.
+- **Skills (PSA)**: Skills carry a Primary Skill Area (Military / Technological / Biosocial / Spacefaring) and are grouped by PSA on the character sheet. Ships with a **Skills compendium** of all 13 core Alpha Dawn skills plus the 5 Knight Hawks spaceship skills (Piloting, Astrogation, Spaceship Engineering, Rocket Weapons, Energy Weapons) to drag onto characters. Weapons can link to a skill by name so their to-hit uses the character's owned skill level.
 - **Combat**: Weapon attacks resolve to-hit (`d100 ≤ effective ability + weapon skill×10`; ranged uses DEX, melee uses STR), roll damage, spend ammo, subtract the target's equipped-armor defense, and apply the result to the target's Current STA. A chat card summarises the attack with Apply-damage buttons.
 - **Range Modifiers**: Ranged attacks measure the distance to each target and apply a to-hit modifier by range band (Point Blank / Short / Medium / Long / Extreme, out-of-range beyond that). Bands are multiples of the weapon's Range and are configurable in `CONFIG.STARFRONTIERS.rangeBrackets`.
 - **Initiative**: The combat tracker rolls `1d10 + IM` (Initiative Modifier = RS ÷ 10) for each combatant.
@@ -103,7 +103,8 @@ Data for each actor/item subtype is defined by **System Data Models** in `module
 - The character's affected ability cards show the racial delta and effective total.
 
 ### Skills
-- Open **Compendium Packs → Skills** and drag skills onto a character; they sort into their PSA (Military / Technological / Biosocial) on the Skills tab. Use the **+** on a PSA header to add a blank skill already tagged to that area.
+- Open **Compendium Packs → Skills** (organized into a folder per PSA) and drag skills onto a character; they sort into their PSA (Military / Technological / Biosocial / Spacefaring) on the Skills tab. Use the **+** on a PSA header to add a blank skill already tagged to that area.
+- Dragging a skill the character **already has** raises that skill's level by 1 (capped at 6) instead of adding a duplicate.
 - Skill check: roll 1d100 under `effective ability + (skill level × 10)`.
 - **Weapon linking**: set a weapon's **Linked Skill** to a skill name (e.g. *Beam Weapons*). Its attack to-hit then uses the character's level in that skill, falling back to the weapon's Manual Skill Level if the character doesn't have it.
 

@@ -220,8 +220,8 @@ export class StarFrontiersActorSheet extends ActorSheet {
     context.race = race;
 
     // Group skills by Primary Skill Area for display.
-    const psaKeys = ['military', 'technological', 'biosocial'];
-    const buckets = { military: [], technological: [], biosocial: [], other: [] };
+    const psaKeys = ['military', 'technological', 'biosocial', 'spacefaring'];
+    const buckets = { military: [], technological: [], biosocial: [], spacefaring: [], other: [] };
     for (const s of skills) {
       const key = psaKeys.includes(s.system?.psa) ? s.system.psa : 'other';
       buckets[key].push(s);
@@ -229,7 +229,8 @@ export class StarFrontiersActorSheet extends ActorSheet {
     context.skillGroups = [
       { key: 'military', label: 'Military', skills: buckets.military },
       { key: 'technological', label: 'Technological', skills: buckets.technological },
-      { key: 'biosocial', label: 'Biosocial', skills: buckets.biosocial }
+      { key: 'biosocial', label: 'Biosocial', skills: buckets.biosocial },
+      { key: 'spacefaring', label: 'Spacefaring', skills: buckets.spacefaring }
     ];
     if (buckets.other.length) {
       context.skillGroups.push({ key: '', label: 'Other', skills: buckets.other });
@@ -246,15 +247,35 @@ export class StarFrontiersActorSheet extends ActorSheet {
    */
   async _onDropItemCreate(itemData, event) {
     const incoming = Array.isArray(itemData) ? itemData : [itemData];
-    const droppedRace = [...incoming].reverse().find(d => d.type === 'race');
 
+    // Race: replace any existing race (one per actor) and sync the name.
+    const droppedRace = [...incoming].reverse().find(d => d.type === 'race');
     if (droppedRace) {
       const existing = this.actor.items.filter(i => i.type === 'race').map(i => i.id);
       if (existing.length) await this.actor.deleteEmbeddedDocuments('Item', existing);
       await this.actor.update({ 'system.race': droppedRace.name });
     }
 
-    return super._onDropItemCreate(itemData, event);
+    // Skills: if the actor already has a skill of the same name, raise its level
+    // (capped at 6) instead of creating a duplicate.
+    const toCreate = [];
+    for (const data of incoming) {
+      if (data.type === 'skill') {
+        const match = this.actor.items.find(
+          i => i.type === 'skill' && i.name.toLowerCase() === String(data.name ?? '').toLowerCase());
+        if (match) {
+          const inc = Number(data.system?.level) || 1;
+          const newLevel = Math.min(6, (Number(match.system?.level) || 0) + inc);
+          await match.update({ 'system.level': newLevel });
+          ui.notifications?.info(`${match.name} raised to level ${newLevel}.`);
+          continue;
+        }
+      }
+      toCreate.push(data);
+    }
+
+    if (!toCreate.length) return [];
+    return super._onDropItemCreate(toCreate, event);
   }
 
   activateListeners(html) {

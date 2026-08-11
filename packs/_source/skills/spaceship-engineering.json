@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillShipEng01",
+  "_key": "!items!sfSkillShipEng01",
+  "name": "Spaceship Engineering",
+  "type": "skill",
+  "img": "icons/svg/clockwork.svg",
+  "system": {
+    "level": 1,
+    "ability": "log",
+    "psa": "spacefaring",
+    "description": "<p>Skill in operating, monitoring, and repairing a spaceship's drives and systems. (Requires Technician and Robotics skills.)</p>"
+  },
+  "effects": [],
+  "folder": "sfFldrSpacefar01",
+  "sort": 1600000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

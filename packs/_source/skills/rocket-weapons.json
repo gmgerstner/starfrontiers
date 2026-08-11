@@ -1,0 +1,20 @@
+{
+  "_id": "sfSkillRocket001",
+  "_key": "!items!sfSkillRocket001",
+  "name": "Rocket Weapons",
+  "type": "skill",
+  "img": "icons/svg/explosion.svg",
+  "system": {
+    "level": 1,
+    "ability": "dex",
+    "psa": "spacefaring",
+    "description": "<p>Skill in firing rocket-type ship weapons — assault rockets, torpedoes, seeker missiles, and rocket batteries. (Requires Projectile and Gyrojet Weapons.)</p>"
+  },
+  "effects": [],
+  "folder": "sfFldrSpacefar01",
+  "sort": 1700000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

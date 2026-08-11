@@ -11,7 +11,7 @@
     "description": "<p>Build, program, repair, and identify the functions of robots.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrTechnlgy01",
   "sort": 800000,
   "ownership": {
     "default": 0

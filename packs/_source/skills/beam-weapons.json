@@ -11,7 +11,7 @@
     "description": "<p>Skill with beam weapons — laser pistols and rifles, electrostunners, and sonic devices. Governs the chance to hit with such weapons.</p>"
   },
   "effects": [],
-  "folder": null,
+  "folder": "sfFldrMilitary01",
   "sort": 100000,
   "ownership": {
     "default": 0
